@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="84.999992mm"
+   viewBox="0 0 100 84.999993"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="90.413605"
+       y="153.70312"
+       width="217.68814"
+       height="97.3685"
+       id="rect43" />
+  </defs>
+  <g
+     id="layer1">
+    <rect
+       style="fill:#f5f5f5;fill-opacity:1;stroke-width:0.257812"
+       id="rect20"
+       width="72.977516"
+       height="33.530209"
+       x="14.098098"
+       y="32.273884"
+       ry="5.7054815"
+       rx="36.488758" />
+    <circle
+       style="fill:#f5f5f5;fill-opacity:1;stroke-width:0.257812"
+       id="path22"
+       cx="20.468922"
+       cy="46.616543"
+       r="16.228922" />
+    <circle
+       style="fill:#f5f5f5;fill-opacity:1;stroke-width:0.257812"
+       id="path22-5"
+       cx="20.54093"
+       cy="46.368347"
+       r="16.228922" />
+    <circle
+       style="fill:#f5f5f5;fill-opacity:1;stroke-width:0.257812"
+       id="path22-7"
+       cx="79.100487"
+       cy="46.842037"
+       r="16.228922" />
+    <circle
+       style="fill:#f5f5f5;fill-opacity:1;stroke-width:0.257812"
+       id="path28"
+       cx="37.268394"
+       cy="36.156502"
+       r="14.770853" />
+    <circle
+       style="fill:#f5f5f5;fill-opacity:1;stroke-width:0.257812"
+       id="path29"
+       cx="60.787651"
+       cy="33.557339"
+       r="18.764688" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.25781264,0,0,0.25781264,-1.3259459,-4.8213283)"
+       id="text43"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:74.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect43);fill:#292929;fill-opacity:1;stroke-width:1.00157;stroke-dasharray:none"><tspan
+         x="90.414062"
+         y="221.6405"
+         id="tspan1">WWW</tspan></text>
+  </g>
+</svg>
