@@ -15,9 +15,9 @@ public class Juego implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id_pk", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_pk;
 
     @JsonProperty("id")
     @Column(name = "id_api", nullable = false)

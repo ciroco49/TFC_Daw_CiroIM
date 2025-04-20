@@ -1,54 +1,59 @@
 package com.ciroiencom.gamingheaventfc.service;
 
+import com.ciroiencom.gamingheaventfc.model.Fav;
 import com.ciroiencom.gamingheaventfc.model.Juego;
+import com.ciroiencom.gamingheaventfc.repository.FavRepository;
 import com.ciroiencom.gamingheaventfc.repository.JuegoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 @Service
 public class JuegoService {
 
-/*    @Autowired
+    @Autowired
     private JuegoRepository juegoRepository;
 
-    public Long save(JuegoVO vO) {
-        Juego bean = new Juego();
-        BeanUtils.copyProperties(vO, bean);
-        bean = juegoRepository.save(bean);
-        return bean.getId();
+    public void saveOrUpdate(Juego videogameAPI) {
+        Juego juego = juegoRepository.findByTitulo(videogameAPI.getTitulo());
+
+        //Insertar juego
+        if(juego == null) {
+           juegoRepository.save(videogameAPI);
+           return ;
+        }
+
+        //Updatear juego
+        juego.setIdApi(videogameAPI.getIdApi());
+        juego.setTitulo(videogameAPI.getTitulo());
+        juego.setDescripcionS(videogameAPI.getDescripcionS());
+        juego.setDescripcionL(videogameAPI.getDescripcionL());
+        juego.setGenero(videogameAPI.getGenero());
+        juego.setPlataforma(videogameAPI.getPlataforma());
+        juego.setDistribuidor(videogameAPI.getDistribuidor());
+        juego.setDesarrollador(videogameAPI.getDesarrollador());
+        juego.setFechaSalida(videogameAPI.getFechaSalida());
+        juego.setOs(videogameAPI.getOs());
+        juego.setProcesador(videogameAPI.getProcesador());
+        juego.setMemoria(videogameAPI.getMemoria());
+        juego.setGrafica(videogameAPI.getGrafica());
+        juego.setAlmacenamiento(videogameAPI.getAlmacenamiento());
+
+        juegoRepository.save(juego);
+
     }
 
     public void delete(Long id) {
         juegoRepository.deleteById(id);
     }
 
-    public void update(Long id, JuegoUpdateVO vO) {
-        Juego bean = requireOne(id);
-        BeanUtils.copyProperties(vO, bean);
-        juegoRepository.save(bean);
+    public ArrayList<Juego> getAll() {
+        ArrayList<Juego> videogames = new ArrayList(juegoRepository.findAll());
+        return videogames;
     }
 
-    public JuegoDTO getById(Long id) {
-        Juego original = requireOne(id);
-        return toDTO(original);
-    }
-
-    public Page<JuegoDTO> query(JuegoQueryVO vO) {
-        throw new UnsupportedOperationException();
-    }
-
-    private JuegoDTO toDTO(Juego original) {
-        JuegoDTO bean = new JuegoDTO();
-        BeanUtils.copyProperties(original, bean);
-        return bean;
-    }
-
-    private Juego requireOne(Long id) {
-        return juegoRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
-    } */
 }

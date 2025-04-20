@@ -12,7 +12,7 @@
 <body>
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
     <main class="mx-auto">
-        <section class="d-flex flex-column align-items-center mt-9 text-center">
+        <section class="d-flex flex-column align-items-center mt-9 text-center mb-5">
             <h3><u>Welcome to Gaming Heaven</u></h3>
             <p class="lead">Here you can search into a large amount of free-to-play games of your choice! 😊</p>
         </section>
@@ -48,23 +48,37 @@
                   </div>
             </form>
             <div class="col-md-10">
-                <div id="videogame_card_container" class="row">
-                    <div class="card border-primary mb-3">
-                        <div class="card-header">
-                            <img alt="Videogame thumbnail" src=""><!--portada-->
-                        </div>
-                        <div class="card-body">
-                            <div><h5><!--titulo--></h5></div>
-                            <div><!--descripción corta--></div>
-                            <div class="d-flex justify-content-between">
-                                <div><!--img de plataforma--></div>
-                                <div>
-                                    <div><!--img de likes (dependiendo si está likeado)--></div>
-                                    <div><!--img de fav (dependiendo si está en favoritos)--></div>
+                <div id="videogame_card_container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <th:block th:each="videogame : ${videogames}">
+                        <div class="col">
+                            <div class="card border-primary mb-3 h-100">
+                                <div class="card-header">
+                                    <img alt="Videogame thumbnail" src=""><!--portada-->
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <h5 class="mb-0" th:text="${videogame.titulo}"><!--titulo--></h5>
+                                        <div th:switch="${videogame.plataforma}">
+                                            <!--img de plataforma-->
+                                            <img th:case="'Windows'" class="svg-platform" alt="PC game" th:src="@{/images/pc_logo.svg}">
+                                            <img th:case="'Web Browser'" class="svg-platform"  alt="Web game" th:src="@{/images/web_logo.svg}">
+                                            <div th:case="'Windows, Web Browser'">
+                                                <img alt="PC game" class="svg-platform" th:src="@{/images/pc_logo.svg}">
+                                                <img alt="Web game" class="svg-platform" th:src="@{/images/web_logo.svg}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div><p class="lead" th:text="${videogame.descripcionS}"><!--descripción corta--></div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <div><!--img de likes (dependiendo si está likeado)--></div>
+                                            <div><!--img de fav (dependiendo si está en favoritos)--></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </th:block>
                 </div>
             </div>
         </section>
