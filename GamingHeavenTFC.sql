@@ -15,9 +15,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---CREATE DATABASE
-DROP DATABASE IF EXISTS "gamingheaventfc";
-CREATE DATABASE "gamingheaventfc";
+DROP DATABASE `gamingheaventfc` IF EXISTS;
+CREATE DATABASE `gamingheaventfc`;
 
 --
 -- Table structure for table `comentarios`
@@ -29,14 +28,14 @@ DROP TABLE IF EXISTS `comentarios`;
 CREATE TABLE `comentarios` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `texto` varchar(500) DEFAULT NULL,
-  `fk_user_pk` varchar(320) NOT NULL,
-  `fk_juego_pk` smallint(5) unsigned NOT NULL,
+  `fk_user_pk` int(10) unsigned NOT NULL,
+  `fk_juego_pk` int(10) unsigned NOT NULL,
   `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `comentarios_usuario_FK` (`fk_user_pk`),
   KEY `comentarios_juego_FK` (`fk_juego_pk`),
-  CONSTRAINT `comentarios_juego_FK` FOREIGN KEY (`id`) REFERENCES `juego` (`id`),
-  CONSTRAINT `comentarios_usuario_FK` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`)
+  CONSTRAINT `comentarios_juego_FK` FOREIGN KEY (`fk_juego_pk`) REFERENCES `juego` (`id_pk`) ON DELETE CASCADE,
+  CONSTRAINT `comentarios_usuario_FK` FOREIGN KEY (`fk_user_pk`) REFERENCES `usuario` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -58,13 +57,13 @@ DROP TABLE IF EXISTS `fav`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fav` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fk_user_pk` varchar(320) NOT NULL,
-  `fk_juego_pk` smallint(5) unsigned NOT NULL,
+  `fk_user_pk` int(10) unsigned NOT NULL,
+  `fk_juego_pk` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fav_juego_FK` (`fk_juego_pk`),
   KEY `fav_usuario_FK` (`fk_user_pk`),
-  CONSTRAINT `fav_juego_FK` FOREIGN KEY (`id`) REFERENCES `juego` (`id`),
-  CONSTRAINT `fav_usuario_FK` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`)
+  CONSTRAINT `fav_juego_FK` FOREIGN KEY (`fk_juego_pk`) REFERENCES `juego` (`id_pk`) ON DELETE CASCADE,
+  CONSTRAINT `fav_usuario_FK` FOREIGN KEY (`fk_user_pk`) REFERENCES `usuario` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -85,7 +84,7 @@ DROP TABLE IF EXISTS `juego`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `juego` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_pk` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_api` smallint(5) unsigned NOT NULL,
   `titulo` varchar(100) DEFAULT NULL,
   `descripcion_S` varchar(250) DEFAULT NULL,
@@ -100,7 +99,7 @@ CREATE TABLE `juego` (
   `memoria` varchar(50) DEFAULT NULL,
   `grafica` varchar(150) DEFAULT NULL,
   `almacenamiento` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_pk`),
   UNIQUE KEY `id_api_unique` (`id_api`),
   UNIQUE KEY `titulo_unique` (`titulo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -124,13 +123,13 @@ DROP TABLE IF EXISTS `like`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `like` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fk_user_pk` varchar(320) NOT NULL,
-  `fk_juego_pk` smallint(5) unsigned NOT NULL,
+  `fk_user_pk` int(10) unsigned NOT NULL,
+  `fk_juego_pk` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `like_juego_FK` (`fk_juego_pk`),
   KEY `like_usuario_FK` (`fk_user_pk`),
-  CONSTRAINT `like_juego_FK` FOREIGN KEY (`id`) REFERENCES `juego` (`id`),
-  CONSTRAINT `like_usuario_FK` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`)
+  CONSTRAINT `like_juego_FK` FOREIGN KEY (`fk_juego_pk`) REFERENCES `juego` (`id_pk`) ON DELETE CASCADE,
+  CONSTRAINT `like_usuario_FK` FOREIGN KEY (`fk_user_pk`) REFERENCES `usuario` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -185,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-18 19:43:08
+-- Dump completed on 2025-04-20 18:17:29
