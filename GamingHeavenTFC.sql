@@ -15,9 +15,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS `GamingHeavenTFC`;
-CREATE DATABASE `GamingHeavenTFC`;
-USE `GamingHeavenTFC`;
+--CREATE DATABASE
+DROP DATABASE IF EXISTS "gamingheaventfc";
+CREATE DATABASE "gamingheaventfc";
 
 --
 -- Table structure for table `comentarios`
@@ -29,14 +29,14 @@ DROP TABLE IF EXISTS `comentarios`;
 CREATE TABLE `comentarios` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `texto` varchar(500) DEFAULT NULL,
-  `fk_user_correo` varchar(320) NOT NULL,
-  `fk_juego_id_api` smallint(5) unsigned NOT NULL,
+  `fk_user_pk` varchar(320) NOT NULL,
+  `fk_juego_pk` smallint(5) unsigned NOT NULL,
   `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `comentarios_usuario_FK` (`fk_user_correo`),
-  KEY `comentarios_juego_FK` (`fk_juego_id_api`),
-  CONSTRAINT `comentarios_juego_FK` FOREIGN KEY (`fk_juego_id_api`) REFERENCES `juego` (`id_api`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `comentarios_usuario_FK` FOREIGN KEY (`fk_user_correo`) REFERENCES `usuario` (`correo`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `comentarios_usuario_FK` (`fk_user_pk`),
+  KEY `comentarios_juego_FK` (`fk_juego_pk`),
+  CONSTRAINT `comentarios_juego_FK` FOREIGN KEY (`id`) REFERENCES `juego` (`id`),
+  CONSTRAINT `comentarios_usuario_FK` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -58,13 +58,13 @@ DROP TABLE IF EXISTS `fav`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fav` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fk_user_correo` varchar(320) NOT NULL,
-  `fk_juego_id_api` smallint(5) unsigned NOT NULL,
+  `fk_user_pk` varchar(320) NOT NULL,
+  `fk_juego_pk` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fav_juego_FK` (`fk_juego_id_api`),
-  KEY `fav_usuario_FK` (`fk_user_correo`),
-  CONSTRAINT `fav_juego_FK` FOREIGN KEY (`fk_juego_id_api`) REFERENCES `juego` (`id_api`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fav_usuario_FK` FOREIGN KEY (`fk_user_correo`) REFERENCES `usuario` (`correo`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fav_juego_FK` (`fk_juego_pk`),
+  KEY `fav_usuario_FK` (`fk_user_pk`),
+  CONSTRAINT `fav_juego_FK` FOREIGN KEY (`id`) REFERENCES `juego` (`id`),
+  CONSTRAINT `fav_usuario_FK` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -88,8 +88,21 @@ CREATE TABLE `juego` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_api` smallint(5) unsigned NOT NULL,
   `titulo` varchar(100) DEFAULT NULL,
+  `descripcion_S` varchar(250) DEFAULT NULL,
+  `descripcion_L` varchar(1500) DEFAULT NULL,
+  `genero` varchar(25) DEFAULT NULL,
+  `plataforma` varchar(50) DEFAULT NULL,
+  `distribuidor` varchar(75) DEFAULT NULL,
+  `desarrollador` varchar(75) DEFAULT NULL,
+  `fecha_salida` date DEFAULT NULL,
+  `OS` varchar(75) DEFAULT NULL,
+  `procesador` varchar(150) DEFAULT NULL,
+  `memoria` varchar(50) DEFAULT NULL,
+  `grafica` varchar(150) DEFAULT NULL,
+  `almacenamiento` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `juego_unique` (`id_api`)
+  UNIQUE KEY `id_api_unique` (`id_api`),
+  UNIQUE KEY `titulo_unique` (`titulo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -111,13 +124,13 @@ DROP TABLE IF EXISTS `like`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `like` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fk_user_correo` varchar(320) NOT NULL,
-  `fk_juego_id_api` smallint(5) unsigned NOT NULL,
+  `fk_user_pk` varchar(320) NOT NULL,
+  `fk_juego_pk` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `like_juego_FK` (`fk_juego_id_api`),
-  KEY `like_usuario_FK` (`fk_user_correo`),
-  CONSTRAINT `like_juego_FK` FOREIGN KEY (`fk_juego_id_api`) REFERENCES `juego` (`id_api`) ON DELETE CASCADE,
-  CONSTRAINT `like_usuario_FK` FOREIGN KEY (`fk_user_correo`) REFERENCES `usuario` (`correo`) ON DELETE CASCADE
+  KEY `like_juego_FK` (`fk_juego_pk`),
+  KEY `like_usuario_FK` (`fk_user_pk`),
+  CONSTRAINT `like_juego_FK` FOREIGN KEY (`id`) REFERENCES `juego` (`id`),
+  CONSTRAINT `like_usuario_FK` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,7 +158,8 @@ CREATE TABLE `usuario` (
   `img` mediumblob DEFAULT NULL,
   `descripcion` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `usuario_unique` (`correo`)
+  UNIQUE KEY `correo_unique` (`correo`),
+  UNIQUE KEY `nickname_unique` (`nickname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -171,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-29 14:15:09
+-- Dump completed on 2025-04-18 19:43:08
