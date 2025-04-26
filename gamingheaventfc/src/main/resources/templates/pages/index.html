@@ -18,13 +18,13 @@
         </section>
         <section class="row mx-5">
             <form class="col-md-2" method="GET">
-                <select class="form-select mb-3" aria-label="Select order by">
+                <select class="form-select mb-3 shadow-lg" aria-label="Select order by">
                     <option value="0">Select an order</option>
                     <option value="likes">Likes</option>
                     <option value="alphabetical">Alphabetical</option>
                     <option class="date">Release Date</option>
                 </select>
-                <div class="card border-primary mb-3" style="max-width: 50rem;">     
+                <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;">     
                     <div class="card-header"><h5 class="h-card-header">Platforms</h5></div>
                         <div class="card-body">
                             <div class="form-check">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                   </div>
-                  <div class="card border-primary mb-3" style="max-width: 50rem;">     
+                  <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;">     
                     <div class="card-header"><h5 class="h-card-header">Genres</h5></div>
                         <div class="card-body">
                             <div class="form-check" th:each="genre : ${genres}">
@@ -51,12 +51,12 @@
                 <div id="videogame_card_container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <th:block th:each="videogame : ${videogames}">
                         <div class="col">
-                            <div class="card border-primary mb-3 h-100">
+                            <div th:id="${videogame.idApi}" class="card border-primary mb-3 h-100 shadow-lg">
                                 <div class="card-header">
                                     <img alt="Videogame thumbnail" src=""><!--portada-->
                                 </div>
                                 <div class="card-body">
-                                    <div class="d-flex align-items-center gap-2">
+                                    <div class="d-flex align-items-center gap-2 flex-wrap">
                                         <h5 class="mb-0" th:text="${videogame.titulo}"><!--titulo--></h5>
                                         <div th:switch="${videogame.plataforma}">
                                             <!--img de plataforma-->
