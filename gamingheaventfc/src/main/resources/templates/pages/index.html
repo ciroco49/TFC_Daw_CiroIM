@@ -52,7 +52,7 @@
                     <th:block th:each="videogame : ${videogames}">
                         <div class="col">
                             <div th:id="${videogame.idApi}" class="card videogames border-primary mb-3 h-100 shadow-lg">
-                                <div class="card-header">
+                                <div class="card-header card-img-thumbnail">
                                     <img th:id="${videogame.idApi} + img" class="w-100 h-100" alt="Videogame thumbnail" src=""><!--portada-->
                                 </div>
                                 <div class="card-body">
