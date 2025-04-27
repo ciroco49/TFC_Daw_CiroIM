@@ -43,7 +43,7 @@ public class FreeToGameApiClient {
 
     private static ArrayList<Integer> getIDs() {
         try {
-            URL urlAllGames = new URL("https://www.freetogame.com/api/games");
+            URL urlAllGames = new URL(urlGames);
             HttpURLConnection conex = (HttpURLConnection) urlAllGames.openConnection();
             conex.setRequestMethod("GET");
             conex.connect();
