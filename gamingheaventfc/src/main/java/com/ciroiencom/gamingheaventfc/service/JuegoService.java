@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -44,7 +45,6 @@ public class JuegoService {
         juego.setAlmacenamiento(videogameAPI.getAlmacenamiento());
 
         juegoRepository.save(juego);
-
     }
 
     public void delete(Long id) {
@@ -54,6 +54,11 @@ public class JuegoService {
     public ArrayList<Juego> getAll() {
         ArrayList<Juego> videogames = new ArrayList(juegoRepository.findAll());
         return videogames;
+    }
+
+    public ArrayList<String> getAllGenresFromGames() {
+        ArrayList<String> genres = new ArrayList(juegoRepository.getAllGenresFromGames());
+        return genres;
     }
 
 }
