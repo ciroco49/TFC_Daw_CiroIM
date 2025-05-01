@@ -3,8 +3,19 @@ setThumbnails();
 async function setThumbnails() {
     const thumbnailsMap = await getThumbnailsFromApi();
     
-    for(const [idApi, url] of thumbnailsMap) 
-        document.getElementById(idApi+"img").setAttribute("src", url);
+    try {
+        for(const [idApi, url] of thumbnailsMap) {
+              var img = document.getElementById(idApi+"img");
+              if(img != null) {
+                img.setAttribute("src", url);
+                img.className = "w-100 h-100";
+              } else{
+                console.log("Videojuego con idAPI " + idApi + " no guardado en BBDD");
+              }
+            }
+    } catch (error) {
+        console.error(error.message);
+    }
 }
 
 async function getThumbnailsFromApi() {

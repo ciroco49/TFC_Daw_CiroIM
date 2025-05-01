@@ -53,7 +53,7 @@
                         <div class="col">
                             <div th:id="${videogame.idApi}" class="card videogames border-primary mb-3 h-100 shadow-lg">
                                 <div class="card-header card-img-thumbnail">
-                                    <img th:id="${videogame.idApi} + img" class="w-100 h-100" alt="Videogame thumbnail" src=""><!--portada-->
+                                    <img th:id="${videogame.idApi} + img" class="rotateLoading" alt="Videogame thumbnail" th:src="@{/images/loading.svg}"><!--portada-->
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex align-items-center gap-2 flex-wrap">
@@ -68,12 +68,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div><p class="lead" th:text="${videogame.descripcionS}"><!--descripción corta--></div>
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <div><!--img de likes (dependiendo si está likeado)--></div>
-                                            <div><!--img de fav (dependiendo si está en favoritos)--></div>
-                                        </div>
+                                    <div><p class="lead" th:text="${videogame.descripcionS}"></p><!--descripción corta--></div>
+                                    <div class="likeAndFav d-flex justify-content-end align-self-end">
+                                        <a href="#"><img class="likeAndFavBtn likeBtn" alt="Like black icon" th:src="@{/images/white_heart.svg}"></a>
+                                        <a href="#"><img class="likeAndFavBtn favBtn" alt="Favorite like icon" th:src="@{/images/white_star.svg}"></a>
                                     </div>
                                 </div>
                             </div>
