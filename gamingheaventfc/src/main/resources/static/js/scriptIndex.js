@@ -1,4 +1,6 @@
 setThumbnails();
+const videogame_card_container = document.getElementById("videogame_card_container");
+const videogames = Array.from(videogame_card_container.children);
 
 async function setThumbnails() {
     const thumbnailsMap = await getThumbnailsFromApi();
@@ -47,4 +49,44 @@ async function getThumbnailsFromApi() {
         console.error(error.message);
       }
       
+}
+
+function filterVideogames() {
+  var platforms = getAllCheckedPlatforms();
+  var genres = getAllCheckedGenres();
+
+  //Lo vacío para poder añadirle solo los juegos que cumplen los filtros
+  if(platforms.length == 0 && genres.length == 0) {
+    for (const videogame of videogames) {
+      videogame_card_container.appendChild(videogame);
+    }
+    return ;
+  }
+  videogame_card_container.innerHTML = "";
+  for (const videogame of videogames) {
+    if(platforms.includes(videogame.getAttribute("data-platform")) || genres.includes(videogame.getAttribute("data-genre"))) {
+      videogame_card_container.appendChild(videogame);
+    }
+  }
+}
+
+
+function getAllCheckedPlatforms() {
+  var platformCheckboxes = document.getElementsByClassName("platformCheckbox");
+  var checked = new Array();
+  for (const platform of platformCheckboxes) {
+    if(platform.checked == true)
+      checked.push(platform.value);
+  }
+  return checked;
+}
+
+function getAllCheckedGenres() {
+  var genreCheckboxes = document.getElementsByClassName("genreCheckbox");
+  var checked = new Array();
+  for (const genre of genreCheckboxes) {
+    if(genre.checked == true)
+      checked.push(genre.value);
+  }
+  return checked;
 }

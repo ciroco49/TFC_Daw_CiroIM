@@ -28,11 +28,11 @@
                     <div class="card-header"><h5 class="h-card-header">Platforms</h5></div>
                         <div class="card-body">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="pc_check" id="pc_check">
+                                <input class="form-check-input platformCheckbox" type="checkbox" value="Windows" id="pc_check" onclick="filterVideogames()">
                                 <label class="form-check-label" for="pc_check">PC</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="browser_check" id="browser_check">
+                                <input class="form-check-input platformCheckbox" type="checkbox" value="Web Browser" id="browser_check" onclick="filterVideogames()">
                                 <label class="form-check-label" for="browser_check">Web browser</label>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                     <div class="card-header"><h5 class="h-card-header">Genres</h5></div>
                         <div class="card-body">
                             <div class="form-check" th:each="genre : ${genres}">
-                                <input class="form-check-input" type="checkbox" th:value="${genre}" th:id="${genre}">
+                                <input class="form-check-input genreCheckbox" th:value="${genre}" type="checkbox" th:id="${genre}" onclick="filterVideogames()">
                                 <label class="form-check-label" th:for="${genre}" th:text="${genre}"></label>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
             <div class="col-md-10">
                 <div id="videogame_card_container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <th:block th:each="videogame : ${videogames}">
-                        <div class="col">
+                        <div class="col" th:data-platform="${videogame.plataforma}" th:data-genre="${videogame.genero}">
                             <div th:id="${videogame.idApi}" class="card videogames border-primary mb-3 h-100 shadow-lg">
                                 <div class="card-header card-img-thumbnail">
                                     <img th:id="${videogame.idApi} + img" class="rotateLoading" alt="Videogame thumbnail" th:src="@{/images/loading.svg}"><!--portada-->
