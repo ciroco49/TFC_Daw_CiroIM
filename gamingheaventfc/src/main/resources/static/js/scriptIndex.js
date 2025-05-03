@@ -52,41 +52,59 @@ async function getThumbnailsFromApi() {
 }
 
 function filterVideogames() {
-  var platforms = getAllCheckedPlatforms();
-  var genres = getAllCheckedGenres();
+  var platforms = getValuesFromCheckboxes(document.querySelectorAll('input[name="platformCheckbox"]:checked'));
+  var genres = getValuesFromCheckboxes(document.querySelectorAll('input[name="genreCheckbox"]:checked'));
+  var platformsConcatenated = "";
 
-  //Lo vacío para poder añadirle solo los juegos que cumplen los filtros
   if(platforms.length == 0 && genres.length == 0) {
     for (const videogame of videogames) {
       videogame_card_container.appendChild(videogame);
     }
     return ;
   }
+  
   videogame_card_container.innerHTML = "";
+  if(platforms.length > 0 && genres.length > 0) {
+    for (const videogame of videogames) {
+      if(platforms.length > 1) {
+        platformsConcatenated = platforms.join(", ");
+        if(platformsConcatenated == videogame.getAttribute("data-platform") && genres.includes(videogame.getAttribute("data-genre"))) {
+          videogame_card_container.appendChild(videogame);
+        }
+      } else {
+        if(platforms.includes(videogame.getAttribute("data-platform")) && genres.includes(videogame.getAttribute("data-genre")))
+          videogame_card_container.appendChild(videogame);
+      }  
+    }
+    return ;
+  }
+
   for (const videogame of videogames) {
-    if(platforms.includes(videogame.getAttribute("data-platform")) || genres.includes(videogame.getAttribute("data-genre"))) {
-      videogame_card_container.appendChild(videogame);
+    if(platforms.length > 1) {
+      platformsConcatenated = platforms.join(", ");
+      if(platformsConcatenated == videogame.getAttribute("data-platform") || genres.includes(videogame.getAttribute("data-genre"))) 
+        videogame_card_container.appendChild(videogame);
+    } else {
+      if(platforms.includes(videogame.getAttribute("data-platform")) || genres.includes(videogame.getAttribute("data-genre"))) 
+        videogame_card_container.appendChild(videogame);
     }
   }
 }
 
-
-function getAllCheckedPlatforms() {
-  var platformCheckboxes = document.getElementsByClassName("platformCheckbox");
-  var checked = new Array();
-  for (const platform of platformCheckboxes) {
-    if(platform.checked == true)
-      checked.push(platform.value);
+function getValuesFromCheckboxes(checkboxes) {
+  var values = new Array();
+  for (const checkbox of checkboxes) {
+    if(checkbox.checked)
+      values.push(checkbox.value);
   }
-  return checked;
+  return values;
 }
 
-function getAllCheckedGenres() {
-  var genreCheckboxes = document.getElementsByClassName("genreCheckbox");
-  var checked = new Array();
-  for (const genre of genreCheckboxes) {
-    if(genre.checked == true)
-      checked.push(genre.value);
+function toggleGenres() {
+  var genres = document.querySelectorAll('input[name="genreCheckbox"]');
+  var genresNotChecked = document.querySelectorAll('input[name="genreCheckbox"]:not(:checked)');
+  for (const genre of genres) {
+     //Si hay alguno sin marcar, se marcan todos pero si no, se desmarcan todos
+    genre.checked = genresNotChecked.length > 0;
   }
-  return checked;
 }
