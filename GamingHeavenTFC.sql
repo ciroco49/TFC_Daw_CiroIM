@@ -17,6 +17,7 @@
 
 DROP DATABASE IF EXISTS `gamingheaventfc`;
 CREATE DATABASE `gamingheaventfc`;
+USE `gamingheaventfc`;
 
 --
 -- Table structure for table `comentarios`
@@ -116,13 +117,13 @@ INSERT INTO `juego` VALUES (18,582,'Tarisland','A cross-platform MMORPG develope
 UNLOCK TABLES;
 
 --
--- Table structure for table `like`
+-- Table structure for table `likes`
 --
 
-DROP TABLE IF EXISTS `like`;
+DROP TABLE IF EXISTS `likes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `like` (
+CREATE TABLE `likes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fk_user_pk` int(10) unsigned NOT NULL,
   `fk_juego_pk` int(10) unsigned NOT NULL,
@@ -135,12 +136,12 @@ CREATE TABLE `like` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `like`
+-- Dumping data for table `likes`
 --
 
-LOCK TABLES `like` WRITE;
-/*!40000 ALTER TABLE `like` DISABLE KEYS */;
-/*!40000 ALTER TABLE `like` ENABLE KEYS */;
+LOCK TABLES `likes` WRITE;
+/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
