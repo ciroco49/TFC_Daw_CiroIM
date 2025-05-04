@@ -6,6 +6,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -69,6 +71,9 @@ public class Juego implements Serializable {
 
     @Column(name = "almacenamiento")
     private String almacenamiento;
+
+    @OneToMany(mappedBy = "fkJuegoPk", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likes = new ArrayList<>();
 
     @JsonProperty("minimum_system_requirements")
     public void setRequisitosMinimos(SystemRequirements requisitos) {

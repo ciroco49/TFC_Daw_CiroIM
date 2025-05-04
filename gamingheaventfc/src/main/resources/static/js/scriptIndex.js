@@ -1,6 +1,9 @@
 setThumbnails();
 const videogame_card_container = document.getElementById("videogame_card_container");
 const videogames = Array.from(videogame_card_container.children);
+const selectOrderBy = document.getElementById("selectOrderBy");
+
+selectOrderBy.addEventListener("change", orderBy);
 
 async function setThumbnails() {
     const thumbnailsMap = await getThumbnailsFromApi();
@@ -107,4 +110,37 @@ function toggleGenres() {
      //Si hay alguno sin marcar, se marcan todos pero si no, se desmarcan todos
     genre.checked = genresNotChecked.length > 0;
   }
+}
+
+function orderBy() {
+  var videogames = Array.from(videogame_card_container.children);
+  switch(selectOrderBy.value) {
+    case "alphabetical":
+      orderAlphabetically(videogames);
+      break;
+    case "likes":
+      //orderByLikes(videogames);
+      break;
+    case "date":
+      orderByReleaseDate(videogames);
+      break;
+  }
+}
+
+function orderAlphabetically(videogames) {
+  videogame_card_container.innerHTML = "";
+  return videogames.sort((a, b) => 
+    a.getAttribute("data-title").localeCompare(b.getAttribute("data-title"))
+  ).forEach((videogame) => {
+    videogame_card_container.appendChild(videogame);
+  });
+}
+
+function orderByReleaseDate(videogames) {
+  videogame_card_container.innerHTML = "";
+  return videogames.sort((a, b) => 
+    new Date(b.getAttribute("data-date")) - new Date(a.getAttribute("data-date"))
+  ).forEach((videogame) => {
+    videogame_card_container.appendChild(videogame);
+  });
 }
