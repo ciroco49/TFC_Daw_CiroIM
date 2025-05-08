@@ -2,6 +2,7 @@ package com.ciroiencom.gamingheaventfc.controller;
 
 import com.ciroiencom.gamingheaventfc.model.Juego;
 import com.ciroiencom.gamingheaventfc.service.JuegoService;
+import com.ciroiencom.gamingheaventfc.service.external.FreeToGameApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,18 +20,6 @@ public class IndexController {
 
     @GetMapping("")
     public String getIndex(Model model) {
-
-        //ESTO LO EJECUTARÉ CON UN BTN EN LA APP
-        /* ArrayList<Juego> videogames = FreeToGameApiClient.getJuegos();
-
-        for(Juego videogame: videogames) {
-            try {
-                juegoService.saveOrUpdate(videogame);
-            } catch(Exception ex) {
-                System.err.println(ex);
-            }
-        } */
-
         ArrayList<Juego> videogames = juegoService.getAll();
         ArrayList<String> genres = juegoService.getAllGenresFromGames();
 
@@ -38,4 +27,19 @@ public class IndexController {
         model.addAttribute("genres", genres);
         return "pages/index";
     }
+
+    @GetMapping("/reloadBBDD")
+    public String reloadBBDDWithApi() {
+        ArrayList<Juego> videogames = FreeToGameApiClient.getJuegos();
+
+        for(Juego videogame: videogames) {
+            try {
+                juegoService.saveOrUpdate(videogame);
+            } catch(Exception ex) {
+                System.err.println(ex);
+            }
+        }
+        return "redirect:/";
+    }
+
 }
