@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
+    <title>Home</title>
+</head>
+<body>
+    <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
+    <main class="mx-auto">
+        <section class="d-flex flex-column align-items-center mt-9 text-center mb-5">
+            <h3><u>Welcome to Gaming Heaven</u></h3>
+            <p class="lead">Here you can search into a large amount of free-to-play games of your choice! 😊</p>
+        </section>
+        <section class="row mx-5">
+            <div class="col-md-2">
+                <label for="selectOrderBy" class="visually-hidden">Select order by</label>
+                <select id="selectOrderBy" class="form-select mb-3 shadow-lg" aria-label="Select order by">
+                    <option value="0" selected disabled>Select an order</option>
+                    <option value="alphabetical">Alphabetical</option>
+                    <option value="likes">Likes</option>
+                    <option value="date">Release Date</option>
+                </select>
+                <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;">
+                    <div class="card-header">
+                        <h5 class="h-card-header">Platforms</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check">
+                            <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Windows"
+                                id="pc_check" onclick="filterVideogames()">
+                            <label class="form-check-label" for="pc_check">PC</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Web Browser"
+                                id="browser_check" onclick="filterVideogames()">
+                            <label class="form-check-label" for="browser_check">Web browser</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;">
+                    <div class="card-header">
+                        <h5 class="h-card-header">Genres</h5>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <input class="btn btn-outline-primary text-wrap text-truncate w-100" type="button"
+                                value="Check all / Uncheck all" onclick="toggleGenres()">
+                        </div>
+                        <div class="form-check" th:each="genre : ${genres}">
+                            <input class="form-check-input" name="genreCheckbox" th:value="${genre}" type="checkbox"
+                                th:id="${genre}" onclick="filterVideogames()">
+                            <label class="form-check-label" th:for="${genre}" th:text="${genre}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <form action="/reloadBBDD" method="GET">
+                        <input id="btnDangerReload" type="submit" value="Recargar BBDD" class="btn btn-danger w-100 mb-3">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div id="videogame_card_container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <th:block th:each="videogame : ${videogames}">
+                        <div class="col" th:data-platform="${videogame.plataforma}" th:data-genre="${videogame.genero}"
+                            th:data-title="${videogame.titulo}" th:data-date="${videogame.fechaSalida}"
+                            th:data-likes="${#lists.size(videogame.likes)}">
+                            <div th:id="${videogame.idApi}" class="card videogames border-primary mb-3 h-100 shadow-lg">
+                                <div class="card-header card-img-thumbnail">
+                                    <img th:id="${videogame.idApi} + img" class="rotateLoading"
+                                        alt="Videogame thumbnail" th:src="@{/images/loading.svg}"><!--portada-->
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                                        <h5 class="mb-0" th:text="${videogame.titulo}"><!--titulo--></h5>
+                                        <div th:switch="${videogame.plataforma}">
+                                            <!--img de plataforma-->
+                                            <img th:case="'Windows'" class="svg-platform" alt="PC game"
+                                                th:src="@{/images/pc_logo.svg}">
+                                            <img th:case="'Web Browser'" class="svg-platform" alt="Web game"
+                                                th:src="@{/images/web_logo.svg}">
+                                            <div th:case="'Windows, Web Browser'">
+                                                <img alt="PC game" class="svg-platform" th:src="@{/images/pc_logo.svg}">
+                                                <img alt="Web game" class="svg-platform"
+                                                    th:src="@{/images/web_logo.svg}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="lead" th:text="${videogame.descripcionS}"></p><!--descripción corta-->
+                                    </div>
+                                    <div class="likeAndFav d-flex justify-content-end align-self-end">
+                                        <a href="#"><img class="likeAndFavBtn likeBtn" alt="Like black icon"
+                                                th:src="@{/images/white_heart.svg}"></a>
+                                        <a href="#"><img class="likeAndFavBtn favBtn" alt="Favorite like icon"
+                                                th:src="@{/images/white_star.svg}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script th:src="@{/js/scriptIndex.js}"></script>
+</body>
+</html>

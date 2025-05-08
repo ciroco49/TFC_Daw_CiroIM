@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "like")
+@Table(name = "likes")
 public class Like implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -17,10 +17,12 @@ public class Like implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fk_user_pk", nullable = false)
-    private String fkUserPk;
+    @ManyToOne
+    @JoinColumn(name = "fkUserPk", referencedColumnName = "id", nullable = false)
+    private Usuario fkUserPk;
 
-    @Column(name = "fk_juego_pk", nullable = false)
-    private Integer fkJuegoPk;
+    @ManyToOne
+    @JoinColumn(name = "fkJuegoPk", referencedColumnName = "id_pk", nullable = false)
+    private Juego fkJuegoPk;
 
 }

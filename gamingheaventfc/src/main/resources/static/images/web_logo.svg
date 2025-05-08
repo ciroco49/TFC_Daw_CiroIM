@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="125mm"
+   height="125mm"
+   viewBox="0 0 125 125"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="web_logo.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.2030761"
+     inkscape:cx="114.70596"
+     inkscape:cy="154.18809"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch23"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#f5f5f5;stop-opacity:1;"
+         offset="0"
+         id="stop23" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient17"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#f5f5f5;stop-opacity:1;"
+         offset="0"
+         id="stop17" />
+      <stop
+         style="stop-color:#f5f5f5;stop-opacity:0;"
+         offset="1"
+         id="stop18" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient13"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop14" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop15" />
+    </linearGradient>
+    <linearGradient
+       id="swatch7"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop7" />
+    </linearGradient>
+    <rect
+       x="90.413605"
+       y="153.70312"
+       width="217.68814"
+       height="97.3685"
+       id="rect43" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient13"
+       id="linearGradient15"
+       x1="3.7399998"
+       y1="40.298371"
+       x2="95.829409"
+       y2="40.298371"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <circle
+     style="fill:#f5f5f5;stroke-width:0.265558"
+     id="path1"
+     cx="62.567909"
+     cy="63.007751"
+     r="59.928841"
+     inkscape:label="back" />
+  <g
+     id="layer1"
+     transform="matrix(1.159686,0,0,1.159686,5.1243437,16.436841)"
+     inkscape:label="main"
+     style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:1.00013;stroke-dasharray:none;stroke-opacity:1">
+    <path
+       id="rect20"
+       style="fill:#f5f5f5;fill-opacity:1;stroke:#3d3d3d;stroke-width:1.32292;stroke-dasharray:none;stroke-opacity:1"
+       d="M 60.787583,14.792692 A 18.764688,18.764688 0 0 0 44.935837,23.533761 14.770853,14.770853 0 0 0 37.268605,21.385572 14.770853,14.770853 0 0 0 23.674086,30.445484 16.228922,16.228922 0 0 0 20.540944,30.139559 16.228922,16.228922 0 0 0 4.9403458,41.929021 16.228922,16.228922 0 0 0 4.2401301,46.61659 16.228922,16.228922 0 0 0 17.83775,62.610446 c 5.925442,1.892857 18.314137,3.193603 32.748905,3.193603 16.74545,0 30.776389,-1.746795 35.102767,-4.1429 A 16.228922,16.228922 0 0 0 95.329661,46.841899 16.228922,16.228922 0 0 0 79.317201,30.618083 18.764688,18.764688 0 0 0 60.787583,14.792692 Z"
+       inkscape:label="nube" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.25781264,0,0,0.25781264,-1.3259459,-4.8213283)"
+       id="text43"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:74.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect43);fill:#3d3d3d;fill-opacity:1;stroke:#000000;stroke-width:3.87927;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:label="text"><tspan
+         x="90.414062"
+         y="221.6405"
+         id="tspan2">WWW</tspan></text>
+  </g>
+</svg>

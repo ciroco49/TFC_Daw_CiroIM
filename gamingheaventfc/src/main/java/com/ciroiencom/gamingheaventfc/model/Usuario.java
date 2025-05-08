@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,5 +33,8 @@ public class Usuario implements Serializable {
 
     @Column(name = "img")
     private byte[] img;
+
+    @OneToMany(mappedBy = "fkUserPk", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likes = new ArrayList<>();
 
 }
