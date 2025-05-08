@@ -3,7 +3,15 @@ const videogame_card_container = document.getElementById("videogame_card_contain
 const videogames = Array.from(videogame_card_container.children);
 const selectOrderBy = document.getElementById("selectOrderBy");
 
+// ================== LISTENERS ================================
+
 selectOrderBy.addEventListener("change", orderBy);
+
+// =============================================================
+
+
+
+// ============== SET THUMBNAILS ===============================
 
 async function setThumbnails() {
     const thumbnailsMap = await getThumbnailsFromApi();
@@ -53,6 +61,12 @@ async function getThumbnailsFromApi() {
       }
       
 }
+
+// =============================================================
+
+
+
+// ============== FILTER GAMES WITH CHECKBOX ===================
 
 function filterVideogames() {
   var platforms = getValuesFromCheckboxes(document.querySelectorAll('input[name="platformCheckbox"]:checked'));
@@ -112,6 +126,12 @@ function toggleGenres() {
   }
 }
 
+// =============================================================
+
+
+
+// ================= ORDER BY ==================================
+
 function orderBy() {
   var videogames = Array.from(videogame_card_container.children);
   switch(selectOrderBy.value) {
@@ -119,7 +139,7 @@ function orderBy() {
       orderAlphabetically(videogames);
       break;
     case "likes":
-      //orderByLikes(videogames);
+      orderByLikes(videogames);
       break;
     case "date":
       orderByReleaseDate(videogames);
@@ -144,3 +164,14 @@ function orderByReleaseDate(videogames) {
     videogame_card_container.appendChild(videogame);
   });
 }
+
+function orderByLikes(videogames) {
+  videogame_card_container.innerHTML = "";
+  return videogames.sort((a, b) => 
+  (b.getAttribute("data-likes") - a.getAttribute("data-likes"))
+  ).forEach((videogame) => {
+    videogame_card_container.appendChild(videogame);
+  });
+}
+
+// =============================================================
