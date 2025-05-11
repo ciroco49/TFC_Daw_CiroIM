@@ -12,7 +12,7 @@
 <body>
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
     <main class="mx-auto row justify-content-center">
-        <form action="" method="POST" class="d-flex flex-column px-2 py-2 mt-9 mx-5 col-md-5">
+        <form action="/register/saveUser" method="POST" class="d-flex flex-column px-2 py-2 mt-9 mx-5 col-md-5">
             <div class="card border-primary shadow-lg">
                 <div class="card-header d-flex flew-row flex-wrap align-items-center justify-content-center gap-2">
                     <img th:src="@{/images/logo.png}" class=".img-fluid" width="50px" height="45px">
@@ -22,15 +22,15 @@
                 <div class="card-body d-flex justify-content-center">
                     <div class="mb-2 d-flex flex-column">
                         <label for="inNicknameRegister" class="form-label lead">Nickname</label>
-                        <input id="inNicknameRegister" type="text" placeholder="Write your nickname" class="me-17_5"> 
+                        <input id="inNicknameRegister" th:name="nickname" type="text" placeholder="Write your nickname" class="me-17_5"> 
                     </div>
                     <div class="mb-2 d-flex flex-column ">
                         <label for="inEmailRegister" class="form-label lead">Email</label>
-                        <input id="inEmailRegister" type="text" placeholder="Write your email" class="me-17_5"> 
+                        <input id="inEmailRegister" th:name="email" type="text" placeholder="Write your email" class="me-17_5"> 
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <label for="inPasswordRegister" class="form-label lead">Password</label>
-                        <input id="inPasswordRegister" type="password" placeholder="Write your password" class="me-17_5"> 
+                        <input id="inPasswordRegister" th:name="pass" type="password" placeholder="Write your password" class="me-17_5"> 
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <input type="submit" value="Register" class="btn btn-outline-primary">

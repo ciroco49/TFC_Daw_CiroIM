@@ -1,40 +1,45 @@
 package com.ciroiencom.gamingheaventfc.controller;
 
-import com.ciroiencom.gamingheaventfc.model.Juego;
-import com.ciroiencom.gamingheaventfc.service.JuegoService;
-import com.ciroiencom.gamingheaventfc.service.external.FreeToGameApiClient;
+import com.ciroiencom.gamingheaventfc.model.Rol;
+import com.ciroiencom.gamingheaventfc.model.Usuario;
+import com.ciroiencom.gamingheaventfc.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
 
     @Autowired
-    JuegoService juegoService;
+    UsuarioService usuarioService;
 
     @GetMapping("")
     public String getIndex(Model model) {
         return "pages/register";
     }
 
-    @GetMapping("/reloadBBDD")
-    public String reloadBBDDWithApi() {
-        ArrayList<Juego> videogames = FreeToGameApiClient.getJuegos();
+    @PostMapping("/saveUser")
+    public String saveUser(@RequestParam String nickname,
+                           @RequestParam String email,
+                           @RequestParam String pass) {
+        try {
+            InputStream inStream = getClass().getResourceAsStream("/static/images/default_user.png");
+            byte[] imgBytes = inStream.readAllBytes();
 
-        for(Juego videogame: videogames) {
-            try {
-                juegoService.saveOrUpdate(videogame);
-            } catch(Exception ex) {
-                System.err.println(ex);
-            }
+            Usuario usr = new Usuario(nickname, email, pass, Rol.USER, imgBytes);
+            usuarioService.save(usr);
+            return "redirect:/";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return "redirect:/";
     }
 
 }
