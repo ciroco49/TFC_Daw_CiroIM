@@ -153,7 +153,7 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `correo` varchar(320) DEFAULT NULL,
-  `password` varchar(12) DEFAULT NULL,
+  `password` varchar(128) DEFAULT NULL,
   `nickname` varchar(20) DEFAULT NULL,
   `img` mediumblob DEFAULT NULL,
   `descripcion` varchar(500) DEFAULT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `correo_unique` (`correo`),
   UNIQUE KEY `nickname_unique` (`nickname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-11 19:36:58
+-- Dump completed on 2025-05-15 22:21:43
