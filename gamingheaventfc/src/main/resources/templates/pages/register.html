@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
@@ -15,22 +15,25 @@
         <form id="registerForm" th:action="@{/register/saveUser}" th:object="${usuario}" method="POST" class="d-flex flex-column px-2 py-2 mt-9 mx-5 col-md-7 col-sm-8">
             <div class="card border-primary shadow-lg">
                 <div class="card-header d-flex flew-row flex-wrap align-items-center justify-content-center gap-2">
-                    <img th:src="@{/images/logo.png}" class=".img-fluid" width="50px" height="45px">
+                    <img alt="App logo. It´s a videocontroller with a halo on top." th:src="@{/images/logo.png}" class=".img-fluid" width="50px" height="45px">
                     <h4 class="h-card-header text-center ">Register at GamingHeaven</h4>
-                    <img th:src="@{/images/logo.png}" class=".img-fluid" width="50px" height="45px">
+                    <img alt="App logo. It´s a videocontroller with a halo on top." th:src="@{/images/logo.png}" class=".img-fluid" width="50px" height="45px">
                 </div>
                 <div class="card-body d-flex justify-content-center">
                     <div class="mb-2 d-flex flex-column">
                         <label for="inNicknameRegister" class="form-label lead">Nickname</label>
                         <input id="inNicknameRegister" th:field="*{nickname}" th:name="nickname" type="text" placeholder="Write your nickname" class="me-17_5" required>
+                        <p th:if="${#fields.hasErrors('nickname')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{nickname}"></p>
                     </div>
                     <div class="mb-2 d-flex flex-column ">
                         <label for="inEmailRegister" class="form-label lead">Email</label>
                         <input id="inEmailRegister" th:field="*{correo}" th:name="email" type="email" placeholder="Write your email" class="me-17_5" required>
+                        <p th:if="${#fields.hasErrors('correo')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{correo}"></p>
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <label for="inPasswordRegister" class="form-label lead">Password</label>
                         <input id="inPasswordRegister" th:field="*{password}" th:name="pass" type="password" placeholder="Write your password" class="me-17_5" required>
+                        <p th:if="${#fields.hasErrors('password')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{password}"></p>
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <input type="submit" value="Register" class="btn btn-outline-primary">
@@ -47,5 +50,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-    <script th:src="@{/js/scriptRegister.js}"></script>
+   <!-- <script th:src="@{/js/scriptRegister.js}"></script> -->
 </html>

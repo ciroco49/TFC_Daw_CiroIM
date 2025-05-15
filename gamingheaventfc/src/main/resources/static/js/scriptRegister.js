@@ -74,7 +74,7 @@ function isValidEmail(value) {
 
 function isValidPassword(value) {
     let validPassword = true;
-    let pattern = /^(?=.*[A-Z])(?=.*\d)[\w@\.,/!?#$%^&*()-+=]{8,12}$/;
+    let pattern = /^(?=.*[A-Z])(?=.*\d)[\w@\.,\/!?#$%^&*()-+=]{8,12}$/;
 
     if(!pattern.test(value))
         validPassword = false;
