@@ -26,9 +26,15 @@ public class RegisterController {
     @GetMapping("")
     public String getIndex(Model model) {
         //Si no recibe una redirección con un usuario con errores vinculados, creo uno vacío
-        if(!model.containsAttribute("usuario")) {
+        if(!model.containsAttribute("usuario"))
             model.addAttribute("usuario", new Usuario());
-        }
+
+        if(model.containsAttribute("nicknameExists"))
+            model.addAttribute("nicknameExists", model.getAttribute("nicknameExists"));
+
+        if(model.containsAttribute("correoExists"))
+            model.addAttribute("correoExists", model.getAttribute("correoExists"));
+
         return "pages/register";
     }
 
@@ -38,6 +44,16 @@ public class RegisterController {
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.usuario", bindingResult);
             redirectAttributes.addFlashAttribute("usuario", user);
+            return "redirect:/register";
+        }
+
+        if(usuarioService.findByNickname(user.getNickname()) != null) {
+            redirectAttributes.addFlashAttribute("nicknameExists", "This nickname is not available.");
+            return "redirect:/register";
+        }
+
+        if(usuarioService.findByCorreo(user.getCorreo()) != null) {
+            redirectAttributes.addFlashAttribute("correoExists", "This email is not available.");
             return "redirect:/register";
         }
 
