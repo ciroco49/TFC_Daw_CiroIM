@@ -15,6 +15,14 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    public Usuario findByNickname(String nickname) {
+        return usuarioRepository.findByNickname(nickname);
+    }
+
+    public Usuario findByCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo);
+    }
+
     public void save(Usuario user) {
         usuarioRepository.save(user);
     }

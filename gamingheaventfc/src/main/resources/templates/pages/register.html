@@ -24,11 +24,13 @@
                         <label for="inNicknameRegister" class="form-label lead">Nickname</label>
                         <input id="inNicknameRegister" th:field="*{nickname}" th:name="nickname" type="text" placeholder="Write your nickname" class="me-17_5" required>
                         <p th:if="${#fields.hasErrors('nickname')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{nickname}"></p>
+                        <p th:if="${nicknameExists}" class="text-danger mb-0 mt-2 p-0" th:text="${nicknameExists}"></p>
                     </div>
                     <div class="mb-2 d-flex flex-column ">
                         <label for="inEmailRegister" class="form-label lead">Email</label>
                         <input id="inEmailRegister" th:field="*{correo}" th:name="email" type="email" placeholder="Write your email" class="me-17_5" required>
                         <p th:if="${#fields.hasErrors('correo')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{correo}"></p>
+                        <p th:if="${correoExists}" class="text-danger mb-0 mt-2 p-0" th:text="${correoExists}"></p>
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <label for="inPasswordRegister" class="form-label lead">Password</label>
