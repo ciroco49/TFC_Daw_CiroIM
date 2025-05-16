@@ -6,6 +6,7 @@ import com.ciroiencom.gamingheaventfc.model.ValidationGroups;
 import com.ciroiencom.gamingheaventfc.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,9 @@ public class RegisterController {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("")
     public String getIndex(Model model) {
@@ -63,6 +67,7 @@ public class RegisterController {
 
             user.setImg(imgBytes);
             user.setRol(Rol.USER);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             usuarioService.save(user);
             return "redirect:/";
         } catch (IOException e) {
