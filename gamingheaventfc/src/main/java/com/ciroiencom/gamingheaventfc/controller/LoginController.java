@@ -20,25 +20,8 @@ public class LoginController {
     UsuarioService usuarioService;
 
     @GetMapping("")
-    public String getIndex(Model model) {
-        //Si no recibe una redirección con un usuario con errores vinculados, creo uno vacío
-        if(!model.containsAttribute("usuario")) {
-            model.addAttribute("usuario", new Usuario());
-        }
+    public String getIndex() {
         return "pages/login";
-    }
-
-    @PostMapping("/loginUser")
-    public String loginUser(@Validated(ValidationGroups.Login.class) @ModelAttribute("usuario") Usuario user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
-        if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.usuario", bindingResult);
-            redirectAttributes.addFlashAttribute("usuario", user);
-            return "redirect:/login";
-        }
-
-        //TODO - PROCESO PARA LOGIN AQUÍ
-        return "redirect:/";
     }
 
 }

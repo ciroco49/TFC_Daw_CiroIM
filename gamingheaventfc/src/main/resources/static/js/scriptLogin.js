@@ -1,6 +1,6 @@
 const form = document.getElementById("loginForm");
-const inEmailLogin = document.getElementById("inEmailLogin");
-const inPasswordLogin = document.getElementById("inPasswordLogin");
+const inEmailLogin = document.getElementById("username");
+const inPasswordLogin = document.getElementById("password");
 
 form.addEventListener("submit", tryToSubmit);
 

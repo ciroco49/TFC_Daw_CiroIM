@@ -12,7 +12,7 @@
 <body>
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
     <main class="mx-auto row justify-content-center">
-        <form id="loginForm" th:action="@{/login/loginUser}" th:object="${usuario}" method="POST" class="d-flex flex-column px-2 py-2 mt-9 mx-5 col-md-7 col-sm-8">
+        <form id="loginForm" th:action="@{/login}" method="post" class="d-flex flex-column px-2 py-2 mt-9 mx-5 col-md-7 col-sm-8">
             <div class="card border-primary shadow-lg">
                 <div class="card-header d-flex flew-row flex-wrap align-items-center justify-content-center gap-2">
                     <img alt="App logo. It´s a videocontroller with a halo on top." th:src="@{/images/logo.png}" class=".img-fluid" width="50px" height="45px">
@@ -21,15 +21,14 @@
                 </div>
                 <div class="card-body d-flex justify-content-center">
                     <div class="mb-2 d-flex flex-column ">
-                        <label for="inEmailLogin" class="form-label lead">Email</label>
-                        <input id="inEmailLogin" th:field="*{correo}" th:name="email" type="email" placeholder="Write your email" class="me-17_5" required>
-                        <p th:if="${#fields.hasErrors('correo')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{correo}"></p>
+                        <label for="username" class="form-label lead">Email</label>
+                        <input id="username" name="username" type="email" placeholder="Write your email" class="me-17_5" required>
                     </div>
                     <div class="mb-2 d-flex flex-column">
-                        <label for="inPasswordLogin" class="form-label lead">Password</label>
-                        <input id="inPasswordLogin" th:field="*{password}" th:name="password" type="password" placeholder="Write your password" class="me-17_5" required>
-                        <p th:if="${#fields.hasErrors('password')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{password}"></p>
+                        <label for="password" class="form-label lead">Password</label>
+                        <input id="password" name="password" type="password" placeholder="Write your password" class="me-17_5" required>
                     </div>
+                    <p th:if="${param.errorLogin}" class="text-danger mb-0 mt-2 p-0">Credenciales incorrectas.</p>
                     <div class="mb-2 d-flex flex-column">
                         <input type="submit" value="Login" class="btn btn-outline-primary">
                     </div>

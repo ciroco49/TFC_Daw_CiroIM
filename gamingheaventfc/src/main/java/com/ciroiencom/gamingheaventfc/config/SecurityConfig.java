@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @EnableWebSecurity
@@ -47,7 +48,6 @@ public class SecurityConfig {
                                 "/logout").authenticated()
                         .requestMatchers("/",
                                 "/login",
-                                "/login/*",
                                 "/register",
                                 "/register/*",
                                 "/*",
