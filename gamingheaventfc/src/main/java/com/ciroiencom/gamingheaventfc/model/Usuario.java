@@ -57,12 +57,4 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "fkUserPk", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likes = new ArrayList<>();
 
-    /*public Usuario (String nickname, String email, String pass, Rol rol, byte[] img) {
-        this.nickname = nickname;
-        this.correo = email;
-        this.password = pass;
-        this.rol = rol;
-        this.img = img;
-    }*/
-
 }

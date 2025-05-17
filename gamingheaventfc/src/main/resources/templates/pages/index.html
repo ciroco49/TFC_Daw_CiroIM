@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
     <meta charset='utf-8'>
@@ -59,7 +61,7 @@
                     </div>
                 </div>
                 <div>
-                    <form action="/reloadBBDD" method="GET">
+                    <form sec:authorize="hasRole('ADMIN')" action="/reloadBBDD" method="GET">
                         <input id="btnDangerReload" type="submit" value="Recargar BBDD" class="btn btn-danger w-100 mb-3">
                     </form>
                 </div>
