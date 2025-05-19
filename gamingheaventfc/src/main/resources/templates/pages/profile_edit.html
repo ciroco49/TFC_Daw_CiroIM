@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
+    <title>Profile Edit</title>
+</head>
+<body>
+    <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
+    <main class="row mt-9 mx-5">
+        <section class="d-flex flex-column mb-5 col-md-3 gap-3">
+            <a th:href="@{/profile}" class="btn btn-outline-primary">My profile</a>
+            <a th:href="@{/profile/edit}" class="btn btn-outline-primary">Edit profile</a>
+        </section>
+        <form id="editAccountForm" class="d-flex flex-column col-md-9 gap-3" th:object="${usuario}" th:action="@{/profile/edit}" method="POST" enctype="multipart/form-data">
+            <div>
+                <p class="lead lime-bold-text">Image</p>
+                <img id="imgUser" alt="User´s profile image." th:src="'data:image/png;base64,' + ${imgUser}" width="125px" height="125px" class="mb-3">
+                <input type="file" id="uploadImg" name="uploadImg" class="form-control w-100" accept="image/png, image/jpeg, image/jpg">
+                <p th:if="${errorTypeImg}" class="text-danger mb-0 mt-2 p-0" th:text="${errorTypeImg}"></p>
+            </div>
+            <div class="d-flex flex-column">
+                <label for="inNicknameEdit" class="form-label lead lime-bold-text">Nickname</label>
+                <input id="inNicknameEdit" name="inNicknameEdit" type="text" class="form-control w-100"
+                        placeholder="Write your new nickname" th:field="*{nickname}">
+                <p th:if="${#fields.hasErrors('nickname')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{nickname}"></p>
+                <p th:if="${nicknameExists}" class="text-danger mb-0 mt-2 p-0" th:text="${nicknameExists}"></p>
+            </div>
+            <div class="d-flex flex-column">
+                <label for="inDescriptionEdit" class="form-label lead lime-bold-text">Description</label>
+                <textarea id="inDescriptionEdit" name="inDescriptionEdit" class="form-control w-100" rows="3" 
+                        placeholder="Write your new description" th:field="*{descripcion}" style="resize: none;"></textarea>
+                <p th:if="${#fields.hasErrors('descripcion')}" class="text-danger mb-0 mt-2 p-0" th:errors="*{descripcion}"></p>
+            </div>
+            <div>
+                <input type="submit" value="Apply changes" class="btn btn-outline-primary">
+            </div>
+        </form>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<script th:src="@{/js/scriptProfile.js}"></script>
+</html>

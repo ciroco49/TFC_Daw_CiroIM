@@ -13,10 +13,10 @@
 </head>
 <body>
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
-    <main class="mx-auto row justify-content-center mt-9">
+    <main class="row mt-9 mx-5">
         <section class="d-flex flex-column mb-5 col-md-3 gap-3">
             <a th:href="@{/profile}" class="btn btn-outline-primary">My profile</a>
-            <a class="btn btn-outline-primary">Edit profile</a>
+            <a th:href="@{/profile/edit}" class="btn btn-outline-primary">Edit profile</a>
         </section>
         <section class="d-flex flex-column col-md-9">
             <div>
@@ -38,11 +38,19 @@
                <p class="lead" th:text="${description}"></p>
                <div th:if="!${description}" style="width: 20rem; height: 7.5rem;"></div>
             </div>
+            <div class="d-flex flex-row gap-5 mt-2">
+            <form th:action="@{/logout}" method="POST">
+                <input type="submit" class="btn btn-outline-primary" value="Logout">
+            </form>
+            <form id="deleteAccountForm" th:action="@{/delete}" method="POST">
+                <input id="btnDangerDeleteAccount" type="submit" class="btn btn-danger" value="Delete Account">
+            </form>
+        </div>
         </section>
     </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-<script th:src="@{/js/scriptLogin.js}"></script>
+<script th:src="@{/js/scriptProfile.js}"></script>
 </html>
