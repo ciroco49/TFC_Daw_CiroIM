@@ -1,5 +1,4 @@
 const formEdit = document.getElementById("editAccountForm");
-const formDelete = document.getElementById("deleteAccountForm");
 
 const uploadImg = document.getElementById("uploadImg");
 const imgUser = document.getElementById("imgUser");
@@ -7,7 +6,6 @@ const inNicknameEdit = document.getElementById("inNicknameEdit");
 const inDescriptionEdit = document.getElementById("inDescriptionEdit");
 
 formEdit.addEventListener("submit", tryToSubmitEdit);
-formDelete.addEventListener("submit", tryToSubmitDelete);
 uploadImg.addEventListener("change", setPreviewImg);
 
 function tryToSubmitEdit() {
@@ -49,10 +47,6 @@ function tryToSubmitEdit() {
 
     if(allValidFields)
         formEdit.submit();
-}
-
-function tryToSubmitDelete() {
-    
 }
 
 function setPreviewImg() {
