@@ -7,7 +7,7 @@ const inNicknameEdit = document.getElementById("inNicknameEdit");
 const inDescriptionEdit = document.getElementById("inDescriptionEdit");
 
 formEdit.addEventListener("submit", tryToSubmitEdit);
-//formDelete.addEventListener("submit", tryToSubmitDelete);
+formDelete.addEventListener("submit", tryToSubmitDelete);
 uploadImg.addEventListener("change", setPreviewImg);
 
 function tryToSubmitEdit() {
