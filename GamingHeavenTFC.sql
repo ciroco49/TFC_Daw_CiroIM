@@ -17,7 +17,7 @@
 
 DROP DATABASE IF EXISTS `gamingheaventfc`;
 CREATE DATABASE `gamingheaventfc`;
-USE `gamingheaventfc`
+USE `gamingheaventfc`;
 
 --
 -- Table structure for table `comentarios`

@@ -72,6 +72,7 @@
                         <div class="col" th:data-platform="${videogame.plataforma}" th:data-genre="${videogame.genero}"
                             th:data-title="${videogame.titulo}" th:data-date="${videogame.fechaSalida}"
                             th:data-likes="${#lists.size(videogame.likes)}">
+                            </block>
                             <div th:id="${videogame.idApi}" class="card videogames border-primary mb-3 h-100 shadow-lg">
                                 <div class="card-header card-img-thumbnail">
                                     <img th:id="${videogame.idApi} + img" class="rotateLoading"

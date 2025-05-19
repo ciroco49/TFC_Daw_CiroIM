@@ -15,7 +15,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto gap-2 gap-lg-3">
                         <li class="nav-item px-1 px-lg-2">
-                            <a class="nav-link" th:classappend="${activeLink == 'Videogames'} ? 'active' : ''" href="#">Videogames
+                            <a class="nav-link" th:classappend="${activeLink == 'Videogames'} ? 'active' : ''" th:href="@{/}">Videogames
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
@@ -28,8 +28,8 @@
                             <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn-outline-primary" style="--bs-btn-padding-y:  1.25rem; --bs-btn-padding-x: 2.25rem; --bs-btn-font-size: 1.25rem;" type="submit">Login</a>
                             <a sec:authorize="!isAuthenticated()" th:href="@{/register}" class="btn btn-outline-primary" style="--bs-btn-padding-y:  1.25rem; --bs-btn-padding-x: 2.25rem; --bs-btn-font-size: 1.25rem;" type="submit">Register</a>
                             <div sec:authorize="isAuthenticated()">
-                                <a>
-                                    <div class="d-flex flex-row align-items-center border border-primary p-2">
+                                <a th:href="@{/profile}" style="text-decoration: none; color: inherit;">
+                                    <div class="d-flex flex-row align-items-center p-2 gap-2">
                                         <img alt="The user´s profile image." th:src="'data:image/png;base64,' + ${imgUser}" width="60px" height="60px">
                                         <p sec:authorize="isAuthenticated()" sec:authentication="principal.username" class="lead mb-0"></p>
                                     </div>

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -31,10 +32,13 @@ public class UsuarioService {
         usuarioRepository.delete(user);
     }
 
-   /* public void update(Long id, UsuarioUpdateVO vO) {
-        Usuario bean = requireOne(id);
-        BeanUtils.copyProperties(vO, bean);
-        usuarioRepository.save(bean);
-    } */
+
+   public void update(String nickname, Usuario usuario) {
+        Usuario userFromBBDD = usuarioRepository.findByNickname(nickname);
+            userFromBBDD.setImg(usuario.getImg());
+            userFromBBDD.setNickname(usuario.getNickname());
+            userFromBBDD.setDescripcion(usuario.getDescripcion());
+        usuarioRepository.save(userFromBBDD);
+    }
 
 }

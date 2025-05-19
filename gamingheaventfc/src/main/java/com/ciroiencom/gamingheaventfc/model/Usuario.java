@@ -40,11 +40,14 @@ public class Usuario implements Serializable {
     @NotBlank(message = "Nickname can´t be empty")
     @Pattern(regexp = "^[A-Z][a-zA-Z0-9_]{0,19}$"
             , message = "The nickname must start with a capital letter and have a maximum length of 20 characters."
-            , groups = {ValidationGroups.Register.class})
+            , groups = {ValidationGroups.Register.class, ValidationGroups.Edit.class})
     @Column(name = "nickname")
     private String nickname;
 
     @Column(name = "descripcion")
+    @Pattern(regexp = "^.{0,500}$"
+            , message = "The description must have a maximum length of 500 characters."
+            , groups = {ValidationGroups.Edit.class})
     private String descripcion;
 
     @Column(name = "img")

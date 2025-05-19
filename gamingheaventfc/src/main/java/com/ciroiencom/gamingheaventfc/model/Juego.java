@@ -1,6 +1,7 @@
 package com.ciroiencom.gamingheaventfc.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
 
