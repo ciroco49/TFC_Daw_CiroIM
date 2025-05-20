@@ -1,23 +1,26 @@
 package com.ciroiencom.gamingheaventfc.service;
 
-import com.ciroiencom.gamingheaventfc.model.Fav;
 import com.ciroiencom.gamingheaventfc.model.Juego;
-import com.ciroiencom.gamingheaventfc.repository.FavRepository;
 import com.ciroiencom.gamingheaventfc.repository.JuegoRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class JuegoService {
 
     @Autowired
     private JuegoRepository juegoRepository;
+
+    public Optional<Juego> findById(Long id) {
+        return juegoRepository.findById(id);
+    }
+
+    public Juego findByTitle(String title) {
+        return juegoRepository.findByTitulo(title);
+    }
 
     public void saveOrUpdate(Juego videogameAPI) {
         Juego juego = juegoRepository.findByTitulo(videogameAPI.getTitulo());

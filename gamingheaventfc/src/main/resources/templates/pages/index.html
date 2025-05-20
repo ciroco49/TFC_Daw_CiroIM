@@ -72,39 +72,40 @@
                         <div class="col" th:data-platform="${videogame.plataforma}" th:data-genre="${videogame.genero}"
                             th:data-title="${videogame.titulo}" th:data-date="${videogame.fechaSalida}"
                             th:data-likes="${#lists.size(videogame.likes)}">
-                            </block>
-                            <div th:id="${videogame.idApi}" class="card videogames border-primary mb-3 h-100 shadow-lg">
-                                <div class="card-header card-img-thumbnail">
-                                    <img th:id="${videogame.idApi} + img" class="rotateLoading"
-                                        alt="Videogame thumbnail" th:src="@{/images/loading.svg}"><!--portada-->
-                                </div>
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center gap-2 flex-wrap">
-                                        <h5 class="mb-0" th:text="${videogame.titulo}"><!--titulo--></h5>
-                                        <div th:switch="${videogame.plataforma}">
-                                            <!--img de plataforma-->
-                                            <img th:case="'Windows'" class="svg-platform" alt="PC game"
-                                                th:src="@{/images/pc_logo.svg}">
-                                            <img th:case="'Web Browser'" class="svg-platform" alt="Web game"
-                                                th:src="@{/images/web_logo.svg}">
-                                            <div th:case="'Windows, Web Browser'">
-                                                <img alt="PC game" class="svg-platform" th:src="@{/images/pc_logo.svg}">
-                                                <img alt="Web game" class="svg-platform"
-                                                    th:src="@{/images/web_logo.svg}">
+                            <a th:href="@{'/' + ${videogame.titulo}}" class="videogames">
+                                <div th:id="${videogame.idApi}" class="card border-primary mb-3 h-100 shadow-lg">
+                                    <div class="card-header card-img-thumbnail">
+                                        <img th:id="${videogame.idApi} + img" class="rotateLoading"
+                                             alt="Videogame thumbnail" th:src="@{/images/loading.svg}"><!--portada-->
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                                            <h5 class="mb-0" th:text="${videogame.titulo}"><!--titulo--></h5>
+                                            <div th:switch="${videogame.plataforma}">
+                                                <!--img de plataforma-->
+                                                <img th:case="'Windows'" class="svg-platform" alt="PC game"
+                                                     th:src="@{/images/pc_logo.svg}">
+                                                <img th:case="'Web Browser'" class="svg-platform" alt="Web game"
+                                                     th:src="@{/images/web_logo.svg}">
+                                                <div th:case="'Windows, Web Browser'">
+                                                    <img alt="PC game" class="svg-platform" th:src="@{/images/pc_logo.svg}">
+                                                    <img alt="Web game" class="svg-platform"
+                                                         th:src="@{/images/web_logo.svg}">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <p class="lead" th:text="${videogame.descripcionS}"></p><!--descripción corta-->
-                                    </div>
-                                    <div class="likeAndFav d-flex justify-content-end align-self-end">
-                                        <a href="#"><img class="likeAndFavBtn likeBtn" alt="Like black icon"
-                                                th:src="@{/images/white_heart.svg}"></a>
-                                        <a href="#"><img class="likeAndFavBtn favBtn" alt="Favorite like icon"
-                                                th:src="@{/images/white_star.svg}"></a>
+                                        <div>
+                                            <p class="lead" th:text="${videogame.descripcionS}"></p><!--descripción corta-->
+                                        </div>
+                                        <div class="likeAndFav d-flex justify-content-end align-self-end">
+                                            <a href="#"><img class="likeAndFavBtn likeBtn" alt="Like black icon"
+                                                             th:src="@{/images/white_heart.svg}"></a>
+                                            <a href="#"><img class="likeAndFavBtn favBtn" alt="Favorite like icon"
+                                                             th:src="@{/images/white_star.svg}"></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </th:block>
                 </div>
