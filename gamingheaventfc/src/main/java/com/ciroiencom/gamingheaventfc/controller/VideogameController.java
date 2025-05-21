@@ -6,6 +6,7 @@ import com.ciroiencom.gamingheaventfc.model.Usuario;
 import com.ciroiencom.gamingheaventfc.service.ComentariosService;
 import com.ciroiencom.gamingheaventfc.service.JuegoService;
 import com.ciroiencom.gamingheaventfc.service.UsuarioService;
+import com.ciroiencom.gamingheaventfc.service.external.YoutubeApiClient;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -38,6 +39,10 @@ public class VideogameController {
 
         model.addAttribute("videogame", juego);
         model.addAttribute("comments", comments);
+
+        String idVideo = YoutubeApiClient.getYoutubeVideoID(title);
+        String videoSrc = "https://www.youtube.com/embed/" + idVideo;
+        model.addAttribute("ytSRC", videoSrc);
 
         if(userLogged == null) {
             return "pages/videogame";
