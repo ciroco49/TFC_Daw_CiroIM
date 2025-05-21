@@ -37,11 +37,12 @@ public class IndexController {
         model.addAttribute("videogames", videogames);
         model.addAttribute("genres", genres);
 
-        if(userLogged != null) {
-            Usuario usuario = usuarioService.findByNickname(userLogged.getUsername());
-            if(usuario != null)
-                model.addAttribute("imgUser", Base64.getEncoder().encodeToString(usuario.getImg()));
+        if(userLogged == null) {
+            return "pages/index";
         }
+
+        Usuario usuario = usuarioService.findByNickname(userLogged.getUsername());
+        model.addAttribute("imgUser", Base64.getEncoder().encodeToString(usuario.getImg()));
 
         return "pages/index";
     }

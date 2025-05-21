@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<th:block th:object="${videogame}"></th:block>
 <head>
     <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
     <meta charset="utf-8">
@@ -12,19 +11,19 @@
 </head>
 <body>
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
-    <main th:object="${videogame}" class="d-flex flex-column justify-content-center mx-5 mt-9">
-        <section class="row d-flex flex-row align-items-center my-3">
-            <div class="d-flex flex-column col-md-4 my-3">
+    <main th:data-videogame-id="${videogame.idApi}" th:object="${videogame}" class="d-flex flex-column mx-auto justify-content-center mt-9">
+        <section class="row d-flex flex-row align-items-start mx-5 my-3">
+            <div class="d-flex flex-column col-xl-4 mb-3">
                 <div class="d-flex flex-column">
-                    <img id="videogameThumbnail" th:alt="*{titulo} + ' thumbnail.'" width="450px" height="250px">
+                    <img id="videogameThumbnail" th:alt="*{titulo} + ' thumbnail.'" class="w-100 h-100">
                     <p class="h2" th:text="*{titulo}"></p>
                 </div>
                 <div class="d-flex flex-row align-items-center gap-2">
                     <img alt="Heart icon representing likes" th:src="@{/images/white_heart.svg}" width="50px" height="50px">
-                    <p class="h5">666</p> <!-- th:text="*{usuarios.size()}" -->
+                    <p class="h5" th:text="*{#lists.size(usuariosLike)}">666</p>
                 </div>
             </div>
-            <div class="d-flex flex-column col-md-8">
+            <div class="d-flex flex-column col-xl-8">
                 <p class="h4">Information</p>
                 <div class="row">
                     <div class="d-flex flex-column col-md-4">
@@ -61,7 +60,7 @@
             </div>
         </section>
         <hr/>
-        <section class="d-flex flex-column">
+        <section class="d-flex flex-column mx-5">
             <div class="d-flex flex-column">
                 <p class="h4">Description</p>
                 <p class="lead" th:text="*{descripcionL}"></p>
@@ -101,27 +100,33 @@
             <hr/>
             <div class="d-flex flex-column">
                 <p class="h4">Screenshots</p>
-                <div class="d-flex flew-row">
-                    <img id="screenS1" th:alt="'A ' + *{titulo} + ' screenshot.'">
-                    <img id="screenS2" th:alt="'A ' + *{titulo} + ' screenshot.'">
-                    <img id="screenS3" th:alt="'A ' + *{titulo} + ' screenshot.'">
+                <div class="row d-flex flew-row">
+                    <div class="col-xl-4">
+                        <img th:alt="'A ' + *{titulo} + ' screenshot.'" class="screenshot w-100 h-100">
+                    </div>
+                    <div class="col-xl-4">
+                        <img th:alt="'A ' + *{titulo} + ' screenshot.'" class="screenshot w-100 h-100">
+                    </div>
+                    <div class="col-xl-4">
+                        <img th:alt="'A ' + *{titulo} + ' screenshot.'" class="screenshot w-100 h-100">
+                    </div>
                 </div>
             </div>
             <hr/>
         </section>
-        <section class="d-flex flex-column">
-            <div class="row d-flex flex-column gap-2 mb-3">
-                <textarea class="col-md-12" placeholder="Write here your comment!" rows="7" style="resize: none;"></textarea>
-                <a class="d-flex justify-content-end" style="text-decoration: none;"><button class="col-md-3 btn btn-outline-primary">Send</button></a><!--TODO - FALTA LA RUTA EN EL <a>-->
-            </div>
-            <!--PARA LEER LOS COMENTARIOS-->
-            <div class="d-flex flex-column border border-dark border-3 p-3">
-                <!----------------- AUN FALTA OBTENERLOS----------------------->
-                <div class="d-flex flex-column gap-2">
-                    <p class="h5">Persona</p>
-                    <p class="lead">Comentario</p>
-                </div>
-                <!----------------- AUN FALTA OBTENERLOS ---------------------->
+        <section class="d-flex flex-column mx-5">
+            <p class="h4">Comments</p>
+            <form th:action="@{'/' + *{titulo} + '/comment'}" method="POST" class="row d-flex flex-column gap-2 mb-5">
+                <textarea class="col-md-12" name="texto" placeholder="Write your comment here!" rows="7" style="resize: none;"></textarea>
+                <input type="submit" class="col-md-3 btn btn-outline-primary align-self-end p-3" value="Send">
+            </form>
+            <div class="d-flex flex-column gap-3">
+                <th:block th:each="comment: ${comments}">
+                    <div class="d-flex flex-column border border-primary p-3" style="background-color: #292929;">
+                        <p class="h5" th:text="${comment.user.getNickname()}"></p>
+                        <p class="lead" th:text="${comment.texto}">Comentario</p>
+                    </div>
+                </th:block>
             </div>
         </section>
     </main>
@@ -129,5 +134,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-<script th:src="@{/js/scriptLogin.js}"></script>
+<script th:src="@{/js/scriptVideogame.js}"></script>
 </html>
