@@ -114,10 +114,11 @@
             </div>
             <hr/>
         </section>
-        <section class="d-flex flex-column mx-5">
+        <section class="d-flex flex-column mx-5 mb-5">
             <p class="h4">Comments</p>
-            <form th:action="@{'/' + *{titulo} + '/comment'}" method="POST" class="row d-flex flex-column gap-2 mb-5">
-                <textarea class="col-md-12" name="texto" placeholder="Write your comment here!" rows="7" style="resize: none;"></textarea>
+            <form id="formSendComment" th:action="@{'/' + *{titulo} + '/comment'}" method="POST" class="row d-flex flex-column gap-2 mb-5">
+                <textarea id="txtAreaComment" class="col-md-12" name="texto" placeholder="Write your comment here!" rows="7" style="resize: none;"></textarea>
+                <p class="text-danger mb-0 mt-2 p-0" th:if="${commentLength}" th:text="${commentLength}"></p>
                 <input type="submit" class="col-md-3 btn btn-outline-primary align-self-end p-3" value="Send">
             </form>
             <div class="d-flex flex-column gap-3">

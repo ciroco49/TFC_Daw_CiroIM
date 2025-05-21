@@ -1,6 +1,7 @@
 package com.ciroiencom.gamingheaventfc.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.io.Serializable;
