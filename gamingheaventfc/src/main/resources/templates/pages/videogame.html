@@ -139,8 +139,11 @@
             <div class="d-flex flex-column gap-3">
                 <th:block th:each="comment: ${comments}">
                     <div class="d-flex flex-column border border-primary p-3" style="background-color: #292929;">
-                        <p class="h5" th:text="${comment.user.getNickname()}"></p>
-                        <p class="lead" th:text="${comment.texto}">Comentario</p>
+                        <div class="d-flex flex-row gap-2 align-items-center">
+                            <p class="lead mb-2" style="font-size: 25px;" th:text="${comment.user.getNickname()}"></p>
+                            <p class="h6 text-muted mb-2" th:text="${#dates.format(comment.fecha, 'dd-MM-yyyy')} + ' at ' + ${#dates.format(comment.fecha, 'HH:mm')}"></p>
+                        </div>
+                        <p class="lead" style="color: #f5f5f5;" th:text="${comment.texto}">Comentario</p>
                     </div>
                 </th:block>
             </div>
