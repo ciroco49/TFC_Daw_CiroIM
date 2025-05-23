@@ -37,12 +37,12 @@
                     <div class="card-body">
                         <div class="form-check">
                             <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Windows"
-                                id="pc_check" onclick="filterVideogames()">
+                                id="pc_check">
                             <label class="form-check-label" for="pc_check">PC</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Web Browser"
-                                id="browser_check" onclick="filterVideogames()">
+                                id="browser_check">
                             <label class="form-check-label" for="browser_check">Web browser</label>
                         </div>
                     </div>
@@ -53,12 +53,12 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <input class="btn btn-outline-primary text-wrap text-truncate w-100" type="button"
-                                value="Check all / Uncheck all" onclick="toggleGenres()">
+                            <input id="toggleGenresIndex" class="btn btn-outline-primary text-wrap text-truncate w-100" type="button"
+                                value="Check all / Uncheck all">
                         </div>
                         <div class="form-check" th:each="genre : ${genres}">
                             <input class="form-check-input" name="genreCheckbox" th:value="${genre}" type="checkbox"
-                                th:id="${genre}" onclick="filterVideogames()">
+                                th:id="${genre}">
                             <label class="form-check-label" th:for="${genre}" th:text="${genre}"></label>
                         </div>
                     </div>
