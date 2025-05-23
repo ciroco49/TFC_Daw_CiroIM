@@ -20,6 +20,10 @@ public class UsuarioService {
         return usuarioRepository.findByNickname(nickname);
     }
 
+    public Usuario findByNicknameWithFavs(String nickname) {
+        return usuarioRepository.findByNicknameWithFavs(nickname);
+    }
+
     public Usuario findByCorreo(String correo) {
         return usuarioRepository.findByCorreo(correo);
     }

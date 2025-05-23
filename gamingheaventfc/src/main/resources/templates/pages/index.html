@@ -15,6 +15,7 @@
 </head>
 <body>
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
+    <div id="alertFavDiv" class="position-fixed top-50 start-50 translate-middle" style="z-index: 1050;"></div> <!--Para una alerta de favs-->
     <main class="mx-auto">
         <section class="d-flex flex-column align-items-center mt-9 text-center mb-5">
             <h3><u>Welcome to Gaming Heaven</u></h3>
@@ -110,8 +111,16 @@
                                                      class="likeAndFavBtn likeBtn" alt="Like icon"
                                                      src="/images/white_heart.svg" />
                                             </a>
-                                            <a><img class="likeAndFavBtn favBtn" alt="Favorite icon"
-                                                             th:src="@{/images/white_star.svg}"></a>
+                                            <a th:data-id="${videogame.id_pk}"
+                                                th:data-fav="${user != null and user.juegosFav.contains(videogame) ? 'true' : 'false'}"
+                                                class="favA">
+                                                <img th:if="${user != null and user.juegosFav.contains(videogame)}"
+                                                    class="likeAndFavBtn favBtn" alt="Favorite icon"
+                                                    src="/images/green_star.svg">
+                                                <img th:if="${user == null or !user.juegosFav.contains(videogame)}"
+                                                    class="likeAndFavBtn favBtn" alt="Favorite icon"
+                                                    src="/images/white_star.svg">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
