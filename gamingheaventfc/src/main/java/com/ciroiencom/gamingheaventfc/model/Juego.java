@@ -109,4 +109,18 @@ public class Juego implements Serializable {
         private String storage;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Juego juego = (Juego) o;
+        return id_pk != null && id_pk.equals(juego.id_pk);
+    }
+
+    @Override
+    public int hashCode() {
+        return id_pk != null ? id_pk.hashCode() : 0;
+    }
+
+
 }

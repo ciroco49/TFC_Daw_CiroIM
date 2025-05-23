@@ -40,8 +40,10 @@ public class SecurityConfig {
                         .requestMatchers("/reloadBBDD").hasRole("ADMIN")
                         .requestMatchers("/social",
                                 "/social/*",
-                                "/*/likeGame",
-                                "/*/favGame",
+                                "/like/save/*",
+                                "/like/remove/*",
+                                "/fav/save/*",
+                                "/fav/remove/*",
                                 "/*/comment",
                                 "/profile",
                                 "/profile/*",

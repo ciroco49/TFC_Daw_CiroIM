@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .favBtn:hover {
-    content: url(../images/greeen_star.svg);
+    content: url(../images/green_star.svg);
 }
 
 .rotateLoading {

@@ -7,6 +7,8 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
     <title>Home</title>
@@ -98,9 +100,17 @@
                                             <p class="lead" th:text="${videogame.descripcionS}"></p><!--descripción corta-->
                                         </div>
                                         <div class="likeAndFav d-flex justify-content-end align-self-end">
-                                            <a href="#"><img class="likeAndFavBtn likeBtn" alt="Like black icon"
-                                                             th:src="@{/images/white_heart.svg}"></a>
-                                            <a href="#"><img class="likeAndFavBtn favBtn" alt="Favorite like icon"
+                                            <a th:data-id="${videogame.id_pk}"
+                                               th:data-liked="${user != null and user.juegosLike.contains(videogame) ? 'true' : 'false'}"
+                                               class="likeA">
+                                                <img th:if="${user != null and user.juegosLike.contains(videogame)}"
+                                                     class="likeAndFavBtn likeBtn" alt="Like icon"
+                                                     src="/images/green_heart.svg" />
+                                                <img th:if="${user == null or !user.juegosLike.contains(videogame)}"
+                                                     class="likeAndFavBtn likeBtn" alt="Like icon"
+                                                     src="/images/white_heart.svg" />
+                                            </a>
+                                            <a><img class="likeAndFavBtn favBtn" alt="Favorite icon"
                                                              th:src="@{/images/white_star.svg}"></a>
                                         </div>
                                     </div>
@@ -116,5 +126,6 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script th:src="@{/js/scriptIndex.js}"></script>
+    <script th:src="@{/js/scriptLikeFav.js}"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@
 </head>
 <body>
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
-    <main class="row mt-9 mx-5">
+    <main class="row mt-9 mx-5 mb-5">
         <section class="d-flex flex-column mb-5 col-md-3 gap-3">
             <a th:href="@{/profile}" class="btn btn-outline-primary">My profile</a>
             <a th:href="@{/profile/edit}" class="btn btn-outline-primary">Edit profile</a>
@@ -36,7 +36,7 @@
              <div>
                 <p class="lead lime-bold-text">Description</p>
                <p class="lead" th:text="${description}"></p>
-               <div th:if="!${description}" style="width: 20rem; height: 7.5rem;"></div>
+               <div th:if="!${description}" style="width: 20rem; height: 5rem;"></div>
             </div>
             <div class="d-flex flex-row gap-5 mt-2">
             <form th:action="@{/logout}" method="POST">

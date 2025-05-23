@@ -42,6 +42,7 @@ public class IndexController {
         }
 
         Usuario usuario = usuarioService.findByNickname(userLogged.getUsername());
+        model.addAttribute("user", usuario);
         model.addAttribute("imgUser", Base64.getEncoder().encodeToString(usuario.getImg()));
 
         return "pages/index";
