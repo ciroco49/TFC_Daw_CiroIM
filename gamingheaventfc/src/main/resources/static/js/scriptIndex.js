@@ -9,6 +9,12 @@ const selectOrderBy = document.getElementById("selectOrderBy");
 
 selectOrderBy.addEventListener("change", orderBy);
 
+document.querySelectorAll('input[name="platformCheckbox"], input[name="genreCheckbox"]').forEach(cb => {
+  cb.addEventListener("change", filterVideogames);
+});
+
+document.getElementById("toggleGenresIndex").addEventListener("click", toggleGenres);
+
 // ============== FILTER GAMES WITH CHECKBOX ===================
 
 function filterVideogames() {
