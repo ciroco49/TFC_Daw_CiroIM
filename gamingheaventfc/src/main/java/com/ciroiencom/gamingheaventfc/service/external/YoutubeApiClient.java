@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class YoutubeApiClient {
 
-    private static final String official = "official trailer";
+    private static final String official = " videogame official trailer";
 
     public static String getYoutubeVideoID(String q_title) {
         try {
@@ -39,7 +39,8 @@ public class YoutubeApiClient {
                     "?key=AIzaSyBWBZJ3j90Ze-fQWMmzI07sDzF53P0Hb1E" +
                     "&q=" + q_title_utf8 + official_utf8 +
                     "&part=snippet" +
-                    "&order=relevance");
+                    "&order=relevance" +
+                    "&type=video");
 
             HttpURLConnection conex = (HttpURLConnection) url.openConnection();
             conex.setRequestMethod("GET");
