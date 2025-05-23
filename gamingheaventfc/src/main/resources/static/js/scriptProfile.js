@@ -1,3 +1,7 @@
+import { setThumbnails } from './scriptUtils.js';
+
+setThumbnails();
+
 const formEdit = document.getElementById("editAccountForm");
 
 const uploadImg = document.getElementById("uploadImg");

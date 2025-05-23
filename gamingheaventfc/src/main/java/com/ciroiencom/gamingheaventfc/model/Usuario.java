@@ -10,6 +10,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -57,7 +58,35 @@ public class Usuario implements Serializable {
     @Column(name="rol")
     private Rol rol;
 
-    @OneToMany(mappedBy = "fkUserPk", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Like> likes = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "likes",
+            joinColumns = @JoinColumn(name = "fk_user_pk"),
+            inverseJoinColumns = @JoinColumn(name = "fk_juego_pk")
+    )
+    private Set<Juego> juegosLike;
+
+    @ManyToMany
+    @JoinTable(
+            name = "fav",
+            joinColumns = @JoinColumn(name = "fk_user_pk"),
+            inverseJoinColumns = @JoinColumn(name = "fk_juego_pk")
+    )
+    private Set<Juego> juegosFav;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Usuario usuario = (Usuario) o;
+
+        return id != null && id.equals(usuario.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 
 }

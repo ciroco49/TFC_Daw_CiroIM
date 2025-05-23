@@ -36,11 +36,12 @@ public class ProfileController {
 
     @GetMapping("")
     public String getProfile(Model model, @AuthenticationPrincipal User userLogged) {
-        Usuario user = usuarioService.findByNickname(userLogged.getUsername());
+        Usuario user = usuarioService.findByNicknameWithFavs(userLogged.getUsername());
         
         model.addAttribute("nickname", user.getNickname());
         model.addAttribute("email", user.getCorreo());
         model.addAttribute("description", user.getDescripcion());
+        model.addAttribute("juegosFav", user.getJuegosFav());
 
         Usuario usuario = usuarioService.findByNickname(userLogged.getUsername());
         model.addAttribute("imgUser", Base64.getEncoder().encodeToString(usuario.getImg()));

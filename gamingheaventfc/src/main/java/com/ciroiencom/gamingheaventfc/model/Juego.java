@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -73,8 +74,11 @@ public class Juego implements Serializable {
     @Column(name = "almacenamiento")
     private String almacenamiento;
 
-    @OneToMany(mappedBy = "fkJuegoPk", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Like> likes = new ArrayList<>();
+    @ManyToMany(mappedBy = "juegosLike")
+    private Set<Usuario> usuariosLike;
+
+    @ManyToMany(mappedBy = "juegosFav")
+    private Set<Usuario> usuariosFav;
 
     @JsonProperty("minimum_system_requirements")
     public void setRequisitosMinimos(SystemRequirements requisitos) {
@@ -104,5 +108,19 @@ public class Juego implements Serializable {
         @JsonProperty("storage")
         private String storage;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Juego juego = (Juego) o;
+        return id_pk != null && id_pk.equals(juego.id_pk);
+    }
+
+    @Override
+    public int hashCode() {
+        return id_pk != null ? id_pk.hashCode() : 0;
+    }
+
 
 }
