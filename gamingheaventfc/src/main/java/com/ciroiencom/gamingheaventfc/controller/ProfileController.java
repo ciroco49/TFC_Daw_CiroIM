@@ -73,6 +73,7 @@ public class ProfileController {
     public String editProfile(@Validated(ValidationGroups.Edit.class) @ModelAttribute("usuario") Usuario user, @AuthenticationPrincipal User userLogged,
                               @RequestParam("uploadImg") MultipartFile uploadImg, BindingResult bindingResult, RedirectAttributes redirectAttributes,
                                 Authentication authentication) {
+        long maxSizeBytes = 512 * 1024;
 
         Usuario usuario = usuarioService.findByNickname(userLogged.getUsername());
 
@@ -82,8 +83,10 @@ public class ProfileController {
             return "redirect:/profile/edit";
         }
 
-        if(!uploadImg.isEmpty() && !Arrays.asList("image/png", "image/jpg", "image/jpeg").contains(uploadImg.getContentType())) {
-            redirectAttributes.addFlashAttribute("errorTypeImg", "The file has to be .png, .jpg or .jpeg.");
+        if(!uploadImg.isEmpty()
+                || !Arrays.asList("image/png", "image/jpg", "image/jpeg").contains(uploadImg.getContentType())
+                || uploadImg.getSize() > maxSizeBytes) {
+            redirectAttributes.addFlashAttribute("errorTypeImg", "The file has to be .png, .jpg or .jpeg and 500KB or less.");
             return "redirect:/profile/edit";
         }
 

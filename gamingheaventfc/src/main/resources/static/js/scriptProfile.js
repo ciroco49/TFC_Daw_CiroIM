@@ -23,7 +23,7 @@ function tryToSubmitEdit() {
         let span = document.createElement("span");
         let p = document.createElement("p");
             p.className = "text-danger mb-0 mt-2 p-0";
-            p.textContent = "The file has to be .png, .jpg or .jpeg.";
+            p.textContent = "The file has to be .png, .jpg or .jpeg and 500KB or less";
         span.appendChild(p);
         uploadImg.insertAdjacentElement("afterend", span);
     }
@@ -64,8 +64,9 @@ function setPreviewImg() {
 function isValidFileFormat(value) {
     let isValidFileFormat = true;
     let imgTypes = ["image/png", "image/jpg", "image/jpeg"];
+    const maxBytes = 512 * 1024;
 
-    if(!imgTypes.includes(value.type)) {
+    if(!imgTypes.includes(value.type) || (value.size > maxBytes)) {
         isValidFileFormat = false;
     }
     return isValidFileFormat;
