@@ -4,6 +4,8 @@ setThumbnails();
 const videogame_card_container = document.getElementById("videogame_card_container");
 const videogames = Array.from(videogame_card_container.children);
 const selectOrderBy = document.getElementById("selectOrderBy");
+const toggleGenresIndex = document.getElementById("toggleGenresIndex");
+const inTitleSearch = document.getElementById("inTitleSearch");
 
 // ================== LISTENERS ================================
 
@@ -13,7 +15,9 @@ document.querySelectorAll('input[name="platformCheckbox"], input[name="genreChec
   cb.addEventListener("change", filterVideogames);
 });
 
-document.getElementById("toggleGenresIndex").addEventListener("click", toggleGenres);
+toggleGenresIndex.addEventListener("click", toggleGenres);
+
+inTitleSearch.addEventListener("input", searchByTitle);
 
 // ============== FILTER GAMES WITH CHECKBOX ===================
 
@@ -124,3 +128,14 @@ function orderByLikes(videogames) {
 }
 
 // =============================================================
+
+
+
+// ============= SEARCH BY TITLE  ==============================
+
+function searchByTitle() {
+  videogame_card_container.innerHTML = "";
+  const inText = inTitleSearch.value.toLowerCase();
+  const videogamesFound = videogames.filter((videogame) => videogame.dataset.title.toLowerCase().includes(inText));
+  videogamesFound.forEach(videogame => videogame_card_container.appendChild(videogame));
+}
