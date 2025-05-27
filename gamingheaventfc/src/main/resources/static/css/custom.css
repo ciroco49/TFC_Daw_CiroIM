@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #f5f5f5;
 }
 
+.my-white-color {
+    color: #f5f5f5;
+}
+
 .mt-9 {
     margin-top: 9rem !important;
 }
@@ -42,6 +46,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.35rem;
     font-weight: bold;
     user-select: none;
+}
+
+.footer-bg {
+    background-color: #292929 !important;
+}
+
+.link-underline-primary {
+    text-decoration-color: #d0fd68 !important;
 }
 
 .usersSocialDivs {
