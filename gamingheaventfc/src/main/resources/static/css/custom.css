@@ -69,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn:hover {
     color: #000000;
     background-color: #d0fd68;
+    border: 0px;
 }
 
 #btnDangerReload:hover {

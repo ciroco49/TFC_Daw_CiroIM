@@ -13,10 +13,10 @@
     <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
     <title>Home</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
     <div id="alertFavDiv" class="position-fixed top-50 start-50 translate-middle" style="z-index: 1050;"></div> <!--Para una alerta de favs-->
-    <main class="mx-auto">
+    <main class="mx-auto w-100 flex-grow-1" style="max-width: 2000px;">
         <section class="d-flex flex-column align-items-center mt-9 text-center mb-5">
             <h3><u>Welcome to Gaming Heaven</u></h3>
             <p class="lead">Here you can search into a large amount of free-to-play games of your choice! 😊</p>
