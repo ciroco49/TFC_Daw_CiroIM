@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #f5f5f5;
 }
 
+.my-white-color {
+    color: #f5f5f5;
+}
+
 .mt-9 {
     margin-top: 9rem !important;
 }
@@ -44,6 +48,14 @@ h1, h2, h3, h4, h5, h6 {
     user-select: none;
 }
 
+.footer-bg {
+    background-color: #292929 !important;
+}
+
+.link-underline-primary {
+    text-decoration-color: #d0fd68 !important;
+}
+
 .usersSocialDivs {
     background-color: #292929;
     overflow: hidden;
@@ -57,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn:hover {
     color: #000000;
     background-color: #d0fd68;
+    border: 0px;
 }
 
 #btnDangerReload:hover {
