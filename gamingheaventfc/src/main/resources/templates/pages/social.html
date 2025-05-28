@@ -11,18 +11,17 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <th:block th:replace="~{fragments/header :: header(activeLink='Social')}"></th:block>
-    <main class="mx-auto justify-content-center w-100 flex-grow-1 mt-9" style="max-width: 2000px;">
-        <h4 class="ms-3">Users</h4>
-        <div class="row">
+    <main class="mx-auto justify-content-center w-100 flex-grow-1 mt-9" style="max-width: 2000px;" role="main" aria-labelledby="users-title">
+        <h4 id="users-title" class="ms-3">Users</h4>
+        <div class="row" role="list" aria-label="List of users">
             <th:block th:each="userMapWithImg: ${usersMapWithImg}">
-                <div class="col-12 mb-3"
-                        th:if="${userMapWithImg.key.nickname} != 'ADMIN'">
-                    <a th:href="@{'/social/' + ${userMapWithImg.key.id}}" class="text-decoration-none text-reset">
+                <div class="col-12 mb-3" th:if="${userMapWithImg.key.nickname} != 'ADMIN'" role="listitem">
+                    <a th:href="@{'/social/' + ${userMapWithImg.key.id}}" class="text-decoration-none text-reset" role="link" aria-label="View profile of user [[${userMapWithImg.key.nickname}]]">
                         <div class="d-flex flex-row align-items-center usersSocialDivs px-3 py-5 gap-2">
-                            <img alt="User´s profile image" th:src="'data:image/png;base64,' + ${userMapWithImg.value}" width="75px" height="75px">
+                            <img alt="Profile image of user [[${userMapWithImg.key.nickname}]]" th:src="'data:image/png;base64,' + ${userMapWithImg.value}" width="75px" height="75px" role="img" />
                             <div class="d-flex flex-column">
-                                <p class="lead mb-0" style="font-size: 25px;" th:text="${userMapWithImg.key.getNickname()}"></p>
-                                <p class="lead text-muted text-truncate mb-0" th:text="${userMapWithImg.key.getDescripcion()}"></p>
+                                <p class="lead mb-0" style="font-size: 25px;" th:text="${userMapWithImg.key.getNickname()}" tabindex="0"></p>
+                                <p class="lead text-muted text-truncate mb-0" th:text="${userMapWithImg.key.getDescripcion()}" tabindex="0"></p>
                             </div>
                         </div>
                     </a>

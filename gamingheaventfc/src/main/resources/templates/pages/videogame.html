@@ -7,153 +7,62 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
-    <title th:text="${videogame.titulo}"></title>
+    <title>Policies</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
-    <main th:data-videogame-id="${videogame.idApi}" th:object="${videogame}" 
-    class="mx-auto justify-content-center w-100 flex-grow-1 mt-9" style="max-width: 2000px;">
-        <section class="row d-flex flex-row align-items-start mx-5 my-3">
-            <div class="d-flex flex-column col-xl-4 mb-3">
-                <div class="d-flex flex-column">
-                    <img id="videogameThumbnail" th:alt="*{titulo} + ' thumbnail.'" class="w-100 h-100">
-                    <p class="h2" th:text="*{titulo}"></p>
-                </div>
-                <div class="d-flex flex-row align-items-center gap-2">
-                    <img alt="Heart icon representing likes" th:src="@{/images/white_heart.svg}" width="50px" height="50px">
-                    <p class="h5" th:text="*{#lists.size(usuariosLike)}">666</p>
-                </div>
-            </div>
-            <div class="d-flex flex-column col-xl-8">
-                <p class="h4">Information</p>
-                <div class="row">
-                    <div class="d-flex flex-column col-md-4">
-                        <div>
-                            <p class="h5">Title</p>
-                            <p class="lead" th:text="*{titulo}"></p>
-                        </div>
-                        <div>
-                            <p class="h5">Developer</p>
-                            <p class="lead" th:text="*{desarrollador}"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column col-md-4">
-                        <div>
-                            <p class="h5">Genre</p>
-                            <p class="lead" th:text="*{genero}"></p>
-                        </div>
-                        <div>
-                            <p class="h5">Publisher</p>
-                            <p class="lead" th:text="*{distribuidor}"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column col-md-4">
-                        <div>
-                            <p class="h5">Release Date</p>
-                            <p class="lead" th:text="*{fechaSalida}"></p>
-                        </div>
-                        <div>
-                            <p class="h5">Platform</p>
-                            <p class="lead" th:text="*{os}"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr/>
+    <th:block th:replace="~{fragments/header :: header(activeLink='Info')}"></th:block>
+    <main class="mx-auto w-100 flex-grow-1 mt-9" style="max-width: 1500px;" role="main" aria-labelledby="main-title">
+        <section class="d-flex flex-column mx-5" role="region" aria-labelledby="privacy-policy-title">
+            <h4 id="privacy-policy-title" tabindex="0">Privacy Policy</h4>
+            <p class="lead">Gaming Heaven respects your privacy. We collect only the information needed to provide you with access to features 
+                like saving favorites, commenting on games, and customizing your profile.</p>
+            <p class="lead"><span class="my-white-color fw-bold">Information we collect when you register:</span></p>
+            <ul aria-label="Information collected at registration">
+                <li class="lead">Nickname</li>
+                <li class="lead">Email address</li>
+                <li class="lead">Password (stored in encrypted form only)</li>
+            </ul>
+            <p class="lead"><span class="my-white-color fw-bold">Optional information you may add later:</span></p>
+            <ul aria-label="Optional user information">
+                <li class="lead">Profile description</li>
+                <li class="lead">Profile picture</li>
+                <li class="lead">Favorite games</li>
+            </ul>
+            <p class="lead"><span class="my-white-color fw-bold">Information we store through your activity:</span></p>
+            <ul aria-label="Information stored through user activity">
+                <li class="lead">Games you like or mark as favorites</li>
+                <li class="lead">Comments you post on games</li>
+            </ul>
+            <p class="lead">We do not collect or track any technical data (like your device, IP address, or browser), and we do not use third-party analytics or monitoring tools.</p>
+            <p class="lead">When you delete your account, all your data — including your profile, favorites, likes, and comments — is permanently removed from our system.</p>
         </section>
-        <section class="d-flex flex-column mx-5">
-            <div class="d-flex flex-column">
-                <p class="h4">Description</p>
-                <p class="lead" th:text="*{descripcionL}"></p>
-            </div>
-            <hr/>
-            <div class="row">
-                <p class="h4">Video example</p>
-                <div class="col-xl-5">
-                    <div class="ratio ratio-16x9">
-                        <iframe th:src="${ytSRC}"
-                                th:title="${videogame.titulo} + ' youtube video.'"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-            <div class="d-flex flex-column">
-                <p class="h4">Minimum System Requirements for Windows</p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="d-flex flex-column">
-                            <div>
-                                <p class="h5">OS</p>
-                                <p class="lead" th:text="*{os}"></p>
-                            </div>
-                            <div>
-                                <p class="h5">Storage</p>
-                                <p class="lead" th:text="*{almacenamiento}"></p>
-                            </div>
-                            <div>
-                                <p class="h5">CPU</p>
-                                <p class="lead" th:text="*{procesador}"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div>
-                            <p class="h5">RAM</p>
-                            <p class="lead" th:text="*{memoria}"></p>
-                        </div>
-                        <div>
-                            <p class="h5">GPU</p>
-                            <p class="lead" th:text="*{grafica}"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-            <div class="d-flex flex-column">
-                <p class="h4">Screenshots</p>
-                <div class="row d-flex flew-row">
-                    <div class="col-xl-4">
-                        <img th:alt="'A ' + *{titulo} + ' screenshot.'" class="screenshot w-100 h-100">
-                    </div>
-                    <div class="col-xl-4">
-                        <img th:alt="'A ' + *{titulo} + ' screenshot.'" class="screenshot w-100 h-100">
-                    </div>
-                    <div class="col-xl-4">
-                        <img th:alt="'A ' + *{titulo} + ' screenshot.'" class="screenshot w-100 h-100">
-                    </div>
-                </div>
-            </div>
-            <hr/>
+        <section class="d-flex flex-column mt-4 mx-5" role="region" aria-labelledby="terms-service-title">
+            <h4 id="terms-service-title" tabindex="0">Terms of Service</h4>
+            <p class="lead">By using Gaming Heaven, you agree to the following terms:</p>
+            <ul aria-label="Terms of service conditions">
+                <li class="lead">You must be at least 13 years old to register an account.</li>
+                <li class="lead">You are responsible for the content you post, including your comments and profile description.</li>
+                <li class="lead">We reserve the right to remove any content or accounts that are offensive, abusive, or harmful to others.</li>
+                <li class="lead">All information and images about the games on our platform are for informational purposes only and may change without notice.</li>
+            </ul>
+            <p class="lead">We may update these terms in the future. Significant changes will be clearly announced on the website.</p>
         </section>
-        <section class="d-flex flex-column mx-5 mb-5">
-            <p class="h4">Comments</p>
-            <form id="formSendComment" th:action="@{'/' + *{titulo} + '/comment'}" method="POST" class="row d-flex flex-column gap-2 mb-5">
-                <textarea id="txtAreaComment" class="col-md-12" name="texto" placeholder="Write your comment here!" rows="7" style="resize: none;"></textarea>
-                <p class="text-danger mb-0 mt-2 p-0" th:if="${commentLength}" th:text="${commentLength}"></p>
-                <input type="submit" class="col-md-3 btn btn-outline-primary align-self-end p-3" value="Send">
-            </form>
-            <div class="d-flex flex-column gap-3">
-                <th:block th:each="comment: ${comments}">
-                    <div class="d-flex flex-column border border-primary p-3" style="background-color: #292929;">
-                        <div class="d-flex flex-row gap-2 align-items-center">
-                            <p class="lead mb-2" style="font-size: 25px;" th:text="${comment.user.getNickname()}"></p>
-                            <p class="h6 text-muted mb-2" th:text="${#dates.format(comment.fecha, 'dd-MM-yyyy')} + ' at ' + ${#dates.format(comment.fecha, 'HH:mm')}"></p>
-                        </div>
-                        <p class="lead" style="color: #f5f5f5;" th:text="${comment.texto}">Comentario</p>
-                    </div>
-                </th:block>
-            </div>
+        <section class="d-flex flex-column mt-4 mx-5" role="region" aria-labelledby="cookie-policy-title">
+            <h4 id="cookie-policy-title" tabindex="0">Cookie Policy</h4>
+            <p class="lead">Gaming Heaven uses a single cookie to keep you logged in after signing in.</p>
+            <p class="lead"><span class="my-white-color fw-bold">What does this cookie do?</span><br>
+            The session cookie allows us to remember your login status while you browse the site. It contains no personal information and is deleted when you log out or close your browser (depending on your settings).</p>
+            <p class="lead">We do not use cookies for tracking, analytics, or advertising purposes.</p>
+        </section>
+        <section class="d-flex flex-column mt-4 mx-5" role="region" aria-labelledby="data-deletion-title">
+            <h4 id="data-deletion-title" tabindex="0">Data Deletion and User Rights</h4>
+            <p class="lead">You have full control over your account. If you choose to delete your account, all your data will be removed automatically and permanently. This includes your profile, comments, likes, and favorite games.</p>
+        </section>
+        <section class="d-flex flex-column mt-4 mx-5" role="region" aria-labelledby="disclaimer-title">
+            <h4 id="disclaimer-title" tabindex="0">Disclaimer</h4>
+            <p class="lead">Gaming Heaven does not host or own the games listed on this platform. We provide links and information about games from third-party publishers. We are not responsible for the availability, content, or performance of any external game or website.</p>
         </section>
     </main>
     <th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-<script th:src="@{/js/scriptVideogame.js}"></script>
 </html>

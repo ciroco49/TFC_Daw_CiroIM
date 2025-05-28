@@ -15,65 +15,63 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
-    <div id="alertFavDiv" class="position-fixed top-50 start-50 translate-middle" style="z-index: 1050;"></div> <!--Para una alerta de favs-->
-    <main class="mx-auto w-100 flex-grow-1" style="max-width: 2000px;">
-        <section class="d-flex flex-column align-items-center mt-9 text-center mb-5">
-            <h3><u>Welcome to Gaming Heaven</u></h3>
+    <div id="alertFavDiv" class="position-fixed top-50 start-50 translate-middle" style="z-index: 1050;" aria-live="assertive" aria-atomic="true"></div>
+    <main class="mx-auto w-100 flex-grow-1" style="max-width: 2000px;" role="main">
+        <section class="d-flex flex-column align-items-center mt-9 text-center mb-5" aria-labelledby="welcome-heading">
+            <h3 id="welcome-heading"><u>Welcome to Gaming Heaven</u></h3>
             <p class="lead">Here you can search into a large amount of free-to-play games of your choice! 😊</p>
         </section>
         <section class="row mx-5">
-            <div class="col-md-2">
+            <div class="col-md-2" aria-label="Search and filters">
                 <div class="mb-3">
                     <label for="inTitleSearch" class="py-1 h5">Search by title</label>
-                    <input id="inTitleSearch" type="text" class="form-control" placeholder="Write a game title here">
+                    <input id="inTitleSearch" type="text" class="form-control" placeholder="Write a game title here" aria-label="Search by title">
                 </div>
                 <label for="selectOrderBy" class="visually-hidden">Select order by</label>
-                <select id="selectOrderBy" class="form-select mb-3 shadow-lg" aria-label="Select order by">
+                <select id="selectOrderBy" class="form-select mb-3 shadow-lg" aria-label="Select order">
                     <option value="0" selected disabled>Select an order</option>
                     <option value="alphabetical">Alphabetical</option>
                     <option value="likes">Likes</option>
                     <option value="date">Release Date</option>
                 </select>
-                <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;">
+                <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;" aria-labelledby="platforms-header">
                     <div class="card-header">
-                        <h5 class="h-card-header">Platforms</h5>
+                        <h5 id="platforms-header" class="h-card-header">Platforms</h5>
                     </div>
                     <div class="card-body">
                         <div class="form-check">
-                            <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Windows"
-                                id="pc_check">
+                            <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Windows" id="pc_check" aria-labelledby="pc_check">
                             <label class="form-check-label" for="pc_check">PC</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Web Browser"
-                                id="browser_check">
+                            <input class="form-check-input" name="platformCheckbox" type="checkbox" value="Web Browser" id="browser_check" aria-labelledby="browser_check">
                             <label class="form-check-label" for="browser_check">Web browser</label>
                         </div>
                     </div>
                 </div>
-                <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;">
+                <div class="card border-primary mb-3 shadow-lg" style="max-width: 50rem;" aria-labelledby="genres-header">
                     <div class="card-header">
-                        <h5 class="h-card-header">Genres</h5>
+                        <h5 id="genres-header" class="h-card-header">Genres</h5>
                     </div>
                     <div class="card-body">
                         <div>
                             <input id="toggleGenresIndex" class="btn btn-outline-primary text-wrap text-truncate w-100" type="button"
-                                value="Check all / Uncheck all">
+                                value="Check all / Uncheck all" aria-label="Toggle all genres">
                         </div>
                         <div class="form-check" th:each="genre : ${genres}">
                             <input class="form-check-input" name="genreCheckbox" th:value="${genre}" type="checkbox"
-                                th:id="${genre}">
+                                th:id="${genre}" th:aria-labelledby="${genre}">
                             <label class="form-check-label" th:for="${genre}" th:text="${genre}"></label>
                         </div>
                     </div>
                 </div>
                 <div>
                     <form sec:authorize="hasRole('ADMIN')" action="/reloadBBDD" method="GET">
-                        <input id="btnDangerReload" type="submit" value="Recargar BBDD" class="btn btn-danger w-100 mb-3">
+                        <input id="btnDangerReload" type="submit" value="Recargar BBDD" class="btn btn-danger w-100 mb-3" aria-label="Reload database">
                     </form>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10" aria-label="Game list">
                 <div id="videogame_card_container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <th:block th:each="videogame : ${videogames}">
                         <div class="col"
@@ -81,16 +79,17 @@
                             th:data-genre="${videogame.genero}"
                             th:data-title="${videogame.titulo}"
                             th:data-date="${videogame.fechaSalida}"
-                            th:data-likes="${#lists.size(videogame.usuariosLike)}">
+                            th:data-likes="${#lists.size(videogame.usuariosLike)}"
+                            role="article" th:aria-label="${videogame.titulo}">
                             <div th:id="${videogame.idApi}" class="card border-primary mb-3 h-100 shadow-lg position-relative">
                                 <div class="card-header card-img-thumbnail">
                                     <img th:id="${videogame.idApi} + img" class="rotateLoading"
-                                        alt="Videogame thumbnail" th:src="@{/images/loading.svg}">
+                                        alt="Videogame thumbnail" th:src="@{/images/loading.svg}" role="img">
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex align-items-center gap-2 flex-wrap">
                                         <h5 class="mb-0" th:text="${videogame.titulo}"></h5>
-                                        <div th:switch="${videogame.plataforma}">
+                                        <div th:switch="${videogame.plataforma}" aria-label="Platform icons">
                                             <img th:case="'Windows'" class="svg-platform" alt="PC game" th:src="@{/images/pc_logo.svg}">
                                             <img th:case="'Web Browser'" class="svg-platform" alt="Web game" th:src="@{/images/web_logo.svg}">
                                             <div th:case="'Windows, Web Browser'">
@@ -100,23 +99,23 @@
                                         </div>
                                     </div>
                                     <p class="lead" th:text="${videogame.descripcionS}"></p>
-                                    <a th:href="@{'/' + ${videogame.titulo}}" class="stretched-link"></a>
-                                    <div class="likeAndFav d-flex justify-content-end align-self-end position-relative z-1">
+                                    <a th:href="@{'/' + ${videogame.titulo}}" class="stretched-link" aria-label="Details for [[${videogame.titulo}]]"></a>
+                                    <div class="likeAndFav d-flex justify-content-end align-self-end position-relative z-1" aria-label="Like and favorite buttons">
                                         <a th:data-id="${videogame.id_pk}"
                                         th:data-liked="${user != null and user.juegosLike.contains(videogame) ? 'true' : 'false'}"
-                                        class="likeA me-2">
+                                        class="likeA me-2" aria-label="Toggle like">
                                             <img th:if="${user != null and user.juegosLike.contains(videogame)}"
-                                                class="likeAndFavBtn likeBtn" alt="Like icon" src="/images/green_heart.svg" />
+                                                class="likeAndFavBtn likeBtn" alt="Liked" src="/images/green_heart.svg" />
                                             <img th:if="${user == null or !user.juegosLike.contains(videogame)}"
-                                                class="likeAndFavBtn likeBtn" alt="Like icon" src="/images/white_heart.svg" />
+                                                class="likeAndFavBtn likeBtn" alt="Not liked" src="/images/white_heart.svg" />
                                         </a>
                                         <a th:data-id="${videogame.id_pk}"
                                         th:data-fav="${user != null and user.juegosFav.contains(videogame) ? 'true' : 'false'}"
-                                        class="favA">
+                                        class="favA" aria-label="Toggle favorite">
                                             <img th:if="${user != null and user.juegosFav.contains(videogame)}"
-                                                class="likeAndFavBtn favBtn" alt="Favorite icon" src="/images/green_star.svg">
+                                                class="likeAndFavBtn favBtn" alt="Favorited" src="/images/green_star.svg">
                                             <img th:if="${user == null or !user.juegosFav.contains(videogame)}"
-                                                class="likeAndFavBtn favBtn" alt="Favorite icon" src="/images/white_star.svg">
+                                                class="likeAndFavBtn favBtn" alt="Not favorited" src="/images/white_star.svg">
                                         </a>
                                     </div>
                                     
