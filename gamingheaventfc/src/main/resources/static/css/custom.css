@@ -6,6 +6,16 @@ main {
     max-width: 175rem;
 }
 
+.btn:focus {
+    box-shadow:  none !important;
+    background-color: #d0fd68 !important;
+    color: #000000;
+}
+
+*:focus:not(.btn) {
+    box-shadow:  0px 0px 0px 3px #d0fd68 !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: #f5f5f5;
 }

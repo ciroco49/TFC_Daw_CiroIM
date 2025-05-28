@@ -11,9 +11,9 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <th:block th:replace="~{fragments/header :: header(activeLink='Info')}"></th:block>
-    <main class="mx-auto w-100 flex-grow-1 mt-9" style="max-width: 1500px;">
-        <section class="d-flex flex-column mx-5">
-            <h4>What is Gaming Heaven?</h4>
+    <main class="mx-auto w-100 flex-grow-1 mt-9" style="max-width: 1500px;" role="main">
+        <section class="d-flex flex-column mx-5" aria-labelledby="aboutHeading">
+            <h4 id="aboutHeading">What is Gaming Heaven?</h4>
             <p class="lead">
                 <span class="text-decoration-underline fs-5">Gaming Heaven</span> is a web app designed for gamers. We created this site
                 to help gamers find new video games more easily and to give them the opportunity to meet others who share their gaming tastes.
@@ -23,8 +23,8 @@
                 to buy every new release when they want to try a new experience or unwind with a hobby. That’s why we bring this site to you!
             </p>
         </section>
-        <section class="d-flex flex-column mt-4 mx-5">
-            <h4>How does Gaming Heaven work?</h4>
+        <section class="d-flex flex-column mt-4 mx-5" aria-labelledby="howItWorksHeading">
+            <h4 id="howItWorksHeading">How does Gaming Heaven work?</h4>
             <p class="lead">
                 On this site you can find more than 400 free-to-play video games easily. You can register an account or use most of the
                 site without logging in. We like to keep basic features—like searching for games—available to everyone.
@@ -39,7 +39,8 @@
                 Plus, you can edit your profile picture, nickname, or description. <span class="text-muted">(if you want a description)</span>
             </p>
         </section>
-        <section class="d-flex flex-row align-items-center justify-content-center mt-4 mx-5">
+
+        <section class="d-flex flex-row align-items-center justify-content-center mt-4 mx-5" role="contentinfo" aria-label="Appreciation message">
             <h4 class="my-0">Thanks for giving Gaming Heaven an opportunity! 😊</h4>
         </section>
     </main>
