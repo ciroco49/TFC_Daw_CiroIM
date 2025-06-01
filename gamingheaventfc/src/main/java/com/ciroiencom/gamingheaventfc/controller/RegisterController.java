@@ -69,7 +69,7 @@ public class RegisterController {
             user.setRol(Rol.USER);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             usuarioService.save(user);
-            return "redirect:/";
+            return "redirect:/login";
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

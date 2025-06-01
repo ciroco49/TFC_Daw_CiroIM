@@ -31,6 +31,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+                .requiresChannel(channel ->
+                        channel.anyRequest().requiresSecure()  //Fuerzo que sea https (se puede comentar para realizar pruebas en local)
+                )
                 .sessionManagement(session -> session
                         .invalidSessionUrl("/")
                         .maximumSessions(2)

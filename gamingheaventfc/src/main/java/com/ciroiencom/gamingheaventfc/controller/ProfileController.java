@@ -84,8 +84,8 @@ public class ProfileController {
         }
 
         if(!uploadImg.isEmpty()
-                || !Arrays.asList("image/png", "image/jpg", "image/jpeg").contains(uploadImg.getContentType())
-                || uploadImg.getSize() > maxSizeBytes) {
+                && (!Arrays.asList("image/png", "image/jpg", "image/jpeg").contains(uploadImg.getContentType())
+                || uploadImg.getSize() > maxSizeBytes)) {
             redirectAttributes.addFlashAttribute("errorTypeImg", "The file has to be .png, .jpg or .jpeg and 500KB or less.");
             return "redirect:/profile/edit";
         }

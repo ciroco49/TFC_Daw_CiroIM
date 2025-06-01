@@ -25,4 +25,8 @@ public class ComentariosService {
         return comentariosRepository.findAll();
     }
 
+    public List<Comentarios> findByVideogameTitle(String title) {
+        return comentariosRepository.findByVideogameTitle(title);
+    }
+
 }

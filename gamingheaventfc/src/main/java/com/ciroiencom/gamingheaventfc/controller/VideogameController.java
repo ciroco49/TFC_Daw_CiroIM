@@ -35,7 +35,7 @@ public class VideogameController {
     @GetMapping("/{title}")
     public String getVideogameView(@PathVariable String title, Model model, @AuthenticationPrincipal User userLogged) {
         Juego juego = juegoService.findByTitle(title);
-        List<Comentarios> comments = comentariosService.findAll();
+        List<Comentarios> comments = comentariosService.findByVideogameTitle(title);
 
         model.addAttribute("videogame", juego);
         model.addAttribute("comments", comments);
@@ -62,8 +62,8 @@ public class VideogameController {
                               @PathVariable String title, @AuthenticationPrincipal User userLogged) {
 
         String textPattern = "^.{1,500}$";
-        //Si el title no cumple el pattern
-        if(!Pattern.compile(textPattern, Pattern.MULTILINE).matcher(title).find()) {
+        //Si el texto no cumple el pattern
+        if(!Pattern.compile(textPattern, Pattern.MULTILINE).matcher(texto).find()) {
             redirectAttributes.addFlashAttribute("commentLength", "The comment must have between 1 and 500 characters.");
             return "redirect:/" + title;
         }
