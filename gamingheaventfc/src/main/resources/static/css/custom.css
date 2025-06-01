@@ -6,13 +6,13 @@ main {
     max-width: 175rem;
 }
 
-.btn:focus {
+.btn:focus:not(.btn-danger) {
     box-shadow:  none !important;
     background-color: #d0fd68 !important;
     color: #000000;
 }
 
-*:focus:not(.btn) {
+*:focus:not(.btn):not(a) {
     box-shadow:  0px 0px 0px 3px #d0fd68 !important;
 }
 

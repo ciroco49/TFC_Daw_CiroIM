@@ -17,7 +17,7 @@ function tryToSubmit() {
         let span = document.createElement("span");
         let p = document.createElement("p");
             p.className = "text-danger mb-0 mt-2 p-0";
-            p.textContent = "The nickname must start with a capital letter and have a maximum length of 20 characters.";
+            p.textContent = "The nickname must start with a capital letter, have a maximum length of 20 characters, and must not contain spaces.";
         span.appendChild(p);
         inNicknameRegister.insertAdjacentElement("afterend", span);
     }
