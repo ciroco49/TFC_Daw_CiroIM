@@ -6,7 +6,7 @@
 
 Se debe acceder al siguiente enlace:
 
-[gamingheaven.site](www.gamingheaven.site)
+[gamingheaven.site](https://gamingheaven.site)
 
 
 ## - Si la web NO está levantada en el servidor
