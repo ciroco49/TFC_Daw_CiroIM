@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
+    <title>Profile</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
+    <main class="container mx-auto w-100 flex-grow-1 mt-9" style="max-width: 2250px;" role="main">
+        <div class="row mx-5">
+            <section class="d-flex flex-column mb-5 col-md-3 gap-3" role="navigation" aria-label="Profile navigation">
+                <a th:href="@{/profile}" class="btn btn-outline-primary">My profile</a>
+                <a th:href="@{/profile/edit}" class="btn btn-outline-primary">Edit profile</a>
+            </section>
+            <section class="d-flex flex-column col-md-9" aria-labelledby="profileInfoHeading">
+                <h1 id="profileInfoHeading" class="visually-hidden">Profile Information</h1>
+                <div>
+                    <p class="lead lime-bold-text">Image</p>
+                    <img alt="User's profile image" th:src="'data:image/png;base64,' + ${imgUser}" width="125px" height="125px">
+                </div>
+                <div>
+                    <p class="lead lime-bold-text">Nickname</p>
+                    <p class="lead" th:text="${nickname}" aria-label="User nickname"></p>
+                    <div th:if="!${nickname}" style="width: 20rem; height: 3.5rem;" aria-hidden="true"></div>
+                </div>
+                <div>
+                    <p class="lead lime-bold-text">Email</p>
+                    <p class="lead" th:text="${email}" aria-label="User email"></p>
+                    <div th:if="!${email}" style="width: 20rem; height: 3.5rem;" aria-hidden="true"></div>
+                </div>
+                <div>
+                    <p class="lead lime-bold-text">Description</p>
+                    <p class="lead" th:text="${description}" aria-label="User description"></p>
+                    <div th:if="!${description}" style="width: 20rem; height: 5rem;" aria-hidden="true"></div>
+                </div>
+                <section aria-labelledby="favoriteGamesHeading">
+                    <p id="favoriteGamesHeading" class="lead lime-bold-text">Favorite Games</p>
+                    <div class="row row-cols-1 row-cols-lg-3 g-4 mb-5">
+                        <th:block th:each="videogame: ${juegosFav}">
+                            <div class="col d-flex">
+                                <a th:href="@{'/' + ${videogame.titulo}}" class="videogames flex-fill text-decoration-none" aria-label="Go to details for [[${videogame.titulo}]]">
+                                    <div th:id="${videogame.idApi}" class="card border-primary shadow-lg h-100" role="group" aria-labelledby="${videogame.idApi + '_title'}">
+                                        <div class="card-header card-img-thumbnail">
+                                            <img th:id="${videogame.idApi} + 'img'" class="rotateLoading" alt="Videogame thumbnail" th:src="@{/images/loading.svg}">
+                                        </div>
+                                        <div class="card-body d-flex flex-column">
+                                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                                <h5 class="mb-0" th:text="${videogame.titulo}" th:id="${videogame.idApi + '_title'}"></h5>
+                                                <div th:switch="${videogame.plataforma}">
+                                                    <img th:case="'Windows'" class="svg-platform" alt="PC game" th:src="@{/images/pc_logo.svg}">
+                                                    <img th:case="'Web Browser'" class="svg-platform" alt="Web game" th:src="@{/images/web_logo.svg}">
+                                                    <div th:case="'Windows, Web Browser'">
+                                                        <img alt="PC game" class="svg-platform" th:src="@{/images/pc_logo.svg}">
+                                                        <img alt="Web game" class="svg-platform" th:src="@{/images/web_logo.svg}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="lead" th:text="${videogame.descripcionS}" aria-label="Short description"></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </th:block>
+                    </div>
+                </section>
+                <div class="d-flex flex-row gap-5 mt-2" role="region" aria-label="Profile actions">
+                    <form th:action="@{/logout}" method="POST">
+                        <input type="submit" class="btn btn-outline-primary" value="Logout" aria-label="Logout button">
+                    </form>
+                    <input id="btnDangerDeleteAccount" type="submit" class="btn btn-danger" value="Delete Account" data-bs-toggle="modal" data-bs-target="#wDeleteModal" aria-label="Delete account button">
+                </div>
+            </section>
+        </div>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    <div id="wDeleteModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle" aria-describedby="deleteModalDesc">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="deleteModalTitle" class="modal-title lead">WARNING</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="deleteModalDesc" class="modal-body">
+                    <p class="lead">Are you sure you want to delete this account?</p>
+                </div>
+                <div class="modal-footer">
+                    <a th:href="@{/profile/delete}"><button id="btnDeleteAccModal" type="button" class="btn btn-danger lead" aria-label="Confirm delete">Delete</button></a>
+                    <button type="button" class="btn btn-outline-primary lead" data-bs-dismiss="modal" aria-label="Close modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<script type="module" th:src="@{/js/scriptProfile.js}"></script>
+</html>

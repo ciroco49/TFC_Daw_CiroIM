@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
+    <title th:text="${videogame.titulo}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<th:block th:replace="~{fragments/header :: header(activeLink='Videogames')}"></th:block>
+<main role="main"
+      th:data-videogame-id="${videogame.idApi}"
+      th:object="${videogame}"
+      class="mx-auto justify-content-center w-100 flex-grow-1 mt-9"
+      style="max-width: 2000px;">
+    <section class="row d-flex flex-row align-items-start mx-5 my-3" aria-labelledby="videogame-info">
+        <h1 id="videogame-info" class="visually-hidden">Videogame Information</h1>
+        <div class="d-flex flex-column col-xl-4 mb-3">
+            <div class="d-flex flex-column">
+                <img id="videogameThumbnail"
+                     th:alt="*{titulo} + ' thumbnail.'"
+                     class="w-100 h-100"
+                     role="img"
+                     aria-label="Videogame thumbnail image">
+                <p class="h2" th:text="*{titulo}" aria-label="Videogame title"></p>
+            </div>
+            <div class="d-flex flex-row align-items-center gap-2" aria-label="Likes section">
+                <img alt="Heart icon representing likes"
+                     th:src="@{/images/white_heart.svg}"
+                     width="50px" height="50px"
+                     role="img"
+                     aria-hidden="true">
+                <p class="h5" th:text="*{#lists.size(usuariosLike)}" aria-label="Number of likes">666</p>
+            </div>
+        </div>
+        <div class="d-flex flex-column col-xl-8">
+            <p class="h4" id="info-heading">Information</p>
+            <div class="row" role="group" aria-labelledby="info-heading">
+                <div class="d-flex flex-column col-md-4">
+                    <div>
+                        <p class="h5">Title</p>
+                        <p class="lead" th:text="*{titulo}" aria-label="Game title"></p>
+                    </div>
+                    <div>
+                        <p class="h5">Developer</p>
+                        <p class="lead" th:text="*{desarrollador}" aria-label="Developer name"></p>
+                    </div>
+                </div>
+                <div class="d-flex flex-column col-md-4">
+                    <div>
+                        <p class="h5">Genre</p>
+                        <p class="lead" th:text="*{genero}" aria-label="Game genre"></p>
+                    </div>
+                    <div>
+                        <p class="h5">Publisher</p>
+                        <p class="lead" th:text="*{distribuidor}" aria-label="Game publisher"></p>
+                    </div>
+                </div>
+                <div class="d-flex flex-column col-md-4">
+                    <div>
+                        <p class="h5">Release Date</p>
+                        <p class="lead" th:text="*{fechaSalida}" aria-label="Release date"></p>
+                    </div>
+                    <div>
+                        <p class="h5">Platform</p>
+                        <p class="lead" th:text="*{os}" aria-label="Platform or OS"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </section>
+    <section class="d-flex flex-column mx-5" aria-labelledby="description-heading">
+        <p class="h4" id="description-heading">Description</p>
+        <p class="lead" th:text="*{descripcionL}" aria-label="Game description"></p>
+        <hr/>
+        <div class="row" aria-labelledby="video-example-heading">
+            <p class="h4" id="video-example-heading">Video example</p>
+            <div class="col-xl-5">
+                <div class="ratio ratio-16x9">
+                    <iframe th:src="${ytSRC}"
+                            th:title="${videogame.titulo} + ' youtube video.'"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            aria-label="Embedded gameplay video">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="d-flex flex-column" aria-labelledby="requirements-heading">
+            <p class="h4" id="requirements-heading">Minimum System Requirements for Windows</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex flex-column">
+                        <div>
+                            <p class="h5">OS</p>
+                            <p class="lead" th:text="*{os}" aria-label="Minimum operating system"></p>
+                        </div>
+                        <div>
+                            <p class="h5">Storage</p>
+                            <p class="lead" th:text="*{almacenamiento}" aria-label="Minimum storage space"></p>
+                        </div>
+                        <div>
+                            <p class="h5">CPU</p>
+                            <p class="lead" th:text="*{procesador}" aria-label="Minimum CPU requirement"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <p class="h5">RAM</p>
+                        <p class="lead" th:text="*{memoria}" aria-label="Minimum RAM requirement"></p>
+                    </div>
+                    <div>
+                        <p class="h5">GPU</p>
+                        <p class="lead" th:text="*{grafica}" aria-label="Minimum GPU requirement"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="d-flex flex-column" aria-labelledby="screenshots-heading">
+            <p class="h4" id="screenshots-heading">Screenshots</p>
+            <div class="row d-flex flew-row" role="group" aria-label="Gallery of videogame screenshots">
+                <div class="col-xl-4">
+                    <img th:alt="'A ' + *{titulo} + ' screenshot.'"
+                         class="screenshot w-100 h-100"
+                         role="img">
+                </div>
+                <div class="col-xl-4">
+                    <img th:alt="'A ' + *{titulo} + ' screenshot.'"
+                         class="screenshot w-100 h-100"
+                         role="img">
+                </div>
+                <div class="col-xl-4">
+                    <img th:alt="'A ' + *{titulo} + ' screenshot.'"
+                         class="screenshot w-100 h-100"
+                         role="img">
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </section>
+    <section class="d-flex flex-column mx-5 mb-5" aria-labelledby="comments-heading">
+        <p class="h4" id="comments-heading">Comments</p>
+        <form id="formSendComment"
+              th:action="@{'/' + *{titulo} + '/comment'}"
+              method="POST"
+              class="row d-flex flex-column gap-2 mb-5"
+              aria-label="Comment submission form">
+            <textarea id="txtAreaComment"
+                      class="col-md-12"
+                      name="texto"
+                      placeholder="Write your comment here!"
+                      rows="7"
+                      style="resize: none;"
+                      aria-label="Comment textarea"></textarea>
+            <p class="text-danger mb-0 mt-2 p-0"
+               th:if="${commentLength}"
+               th:text="${commentLength}"
+               role="alert"
+               aria-live="polite"></p>
+            <input type="submit"
+                   class="col-md-3 btn btn-outline-primary align-self-end p-3"
+                   value="Send"
+                   aria-label="Send comment button">
+        </form>
+        <div class="d-flex flex-column gap-3" aria-label="User comments list">
+            <th:block th:each="comment: ${comments}">
+                <div class="d-flex flex-column border border-primary p-3"
+                     style="background-color: #292929;"
+                     role="article"
+                     aria-label="User comment">
+                    <div class="d-flex flex-row gap-2 align-items-center">
+                        <p class="lead mb-2"
+                           style="font-size: 25px;"
+                           th:text="${comment.user.getNickname()}"
+                           aria-label="Username"></p>
+                        <p class="h6 text-muted mb-2"
+                           th:text="${#dates.format(comment.fecha, 'dd-MM-yyyy')} + ' at ' + ${#dates.format(comment.fecha, 'HH:mm')}"
+                           aria-label="Comment date and time"></p>
+                    </div>
+                    <p class="lead"
+                       style="color: #f5f5f5;"
+                       th:text="${comment.texto}"
+                       aria-label="Comment content">Comentario</p>
+                </div>
+            </th:block>
+        </div>
+    </section>
+</main>
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<script th:src="@{/js/scriptVideogame.js}"></script>
+</html>

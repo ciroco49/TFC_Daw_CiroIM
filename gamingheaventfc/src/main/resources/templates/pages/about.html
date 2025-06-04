@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
+    <title>About us</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <th:block th:replace="~{fragments/header :: header(activeLink='Info')}"></th:block>
+    <main class="mx-auto w-100 flex-grow-1 mt-9" style="max-width: 1500px;" role="main">
+        <section class="d-flex flex-column mx-5" aria-labelledby="aboutHeading">
+            <h4 id="aboutHeading">What is Gaming Heaven?</h4>
+            <p class="lead">
+                <span class="text-decoration-underline fs-5">Gaming Heaven</span> is a web app designed for gamers. We created this site
+                to help gamers find new video games more easily and to give them the opportunity to meet others who share their gaming tastes.
+            </p>
+            <p class="lead">
+                All our video games are free-to-play <span class="text-muted">(FPS)</span> because we know not every gamer can afford
+                to buy every new release when they want to try a new experience or unwind with a hobby. That’s why we bring this site to you!
+            </p>
+        </section>
+        <section class="d-flex flex-column mt-4 mx-5" aria-labelledby="howItWorksHeading">
+            <h4 id="howItWorksHeading">How does Gaming Heaven work?</h4>
+            <p class="lead">
+                On this site you can find more than 400 free-to-play video games easily. You can register an account or use most of the
+                site without logging in. We like to keep basic features—like searching for games—available to everyone.
+            </p>
+            <p class="lead">
+                You can search games by name, filter by platform or genre, or sort them in three different ways. You can also click on a game
+                to see more information, such as a long description, screenshots, minimum requirements, or other users’ comments on the game.
+            </p>
+            <p class="lead">
+                If you register an account and log in, you can like games or save them as favorites (up to three favorites to give them
+                a special place on your profile). You can also comment on games or view other users’ profiles in “Social” to meet new people.
+                Plus, you can edit your profile picture, nickname, or description. <span class="text-muted">(if you want a description)</span>
+            </p>
+        </section>
+
+        <section class="d-flex flex-row align-items-center justify-content-center mt-4 mx-5" role="contentinfo" aria-label="Appreciation message">
+            <h4 class="my-0">Thanks for giving Gaming Heaven an opportunity! 😊</h4>
+        </section>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>

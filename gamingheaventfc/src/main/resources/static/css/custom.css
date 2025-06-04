@@ -1,0 +1,187 @@
+body {
+    background-color: #3d3d3d;
+}
+
+main {
+    max-width: 175rem;
+}
+
+.btn:focus:not(.btn-danger) {
+    box-shadow:  none !important;
+    background-color: #d0fd68 !important;
+    color: #000000;
+}
+
+*:focus:not(.btn):not(a) {
+    box-shadow:  0px 0px 0px 3px #d0fd68 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #f5f5f5;
+}
+
+.my-white-color {
+    color: #f5f5f5;
+}
+
+.mt-9 {
+    margin-top: 9rem !important;
+}
+
+.me-15 {
+    margin-right: 15rem !important;
+}
+
+.border-primary {
+    border: 1px solid #d0fd68 !important;
+}
+
+.navbar {
+    padding: 0px;
+}
+
+.navbar-brand {
+    color: #f5f5f5;
+    font-weight: bolder;
+    font-size: xx-large;
+    user-select: none;
+    pointer-events: none;
+}
+
+.navbar.bg-dark {
+    background-color: #292929 !important;
+}
+
+.nav-link {
+    font-size: 1.35rem;
+    font-weight: bold;
+    user-select: none;
+}
+
+.footer-bg {
+    background-color: #292929 !important;
+}
+
+.link-underline-primary {
+    text-decoration-color: #d0fd68 !important;
+}
+
+.usersSocialDivs {
+    background-color: #292929;
+    overflow: hidden;
+    height: 75px;
+}
+
+.form-select {
+    background-color: #f5f5f5;
+}
+
+.btn:hover {
+    color: #000000;
+    background-color: #d0fd68;
+    border: 0px;
+}
+
+#btnDangerReload:hover {
+    color: #f5f5f5;
+    background-color: #fa0000;
+    border-color: #fa0000;
+}
+
+#btnDangerDeleteAccount:hover {
+    color: #f5f5f5;
+    background-color: #fa0000;
+    border-color: #fa0000;
+}
+
+#btnDeleteAccModal:hover {
+    color: #f5f5f5;
+    background-color: #fa0000;
+    border-color: #fa0000;
+}
+
+.btn-outline-primary {
+    color: #d0fd68;
+    border: 1px solid #d0fd68;
+    border-radius: 0px;
+}
+
+.form-check-input:checked {
+    background-color: #d0fd68;
+    color: #000000;
+    background-image: url(../images/black_check.svg);
+}
+
+.videogames {
+    color: inherit;
+    text-decoration: none !important;
+}
+
+.card {
+    border-radius: 0px;
+}
+
+.card-img-thumbnail {
+    padding: 0px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 0.5rem;
+}
+
+.h-card-header {
+    margin-bottom: 0px;
+}
+
+.svg-platform {
+    height: 35px;
+    width: 35px;
+}
+
+.likeAndFav {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.75rem;
+    position: relative;
+    z-index: 2;
+}
+
+.likeBtn {
+    height: 40px;
+    width: 40px;
+    padding-top: 5px;
+}
+
+.lime-bold-text {
+    color: #d0fd68;
+}
+
+.favBtn {
+    height: 45px;
+    width: 45px;
+}
+
+.likeBtn:hover {
+    cursor: pointer;
+    content: url(../images/green_heart.svg);
+}
+
+.favBtn:hover {
+    cursor: pointer;
+    content: url(../images/green_star.svg);
+}
+
+.rotateLoading {
+    width: 5.5rem;
+    height: 5.5rem;
+    padding: 1.25rem;
+    animation: rotate 0.75s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

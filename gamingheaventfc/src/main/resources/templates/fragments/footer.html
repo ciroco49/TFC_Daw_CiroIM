@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+    <footer id="footer" th:fragment="footer" role="contentinfo" aria-label="Website footer">
+        <div class="container-fluid px-0 py-3 footer-bg mt-5">
+            <div class="row d-flex flex-row justify-content-center align-items-center mx-0">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center my-2">
+                            <img alt="Web logo" th:src="@{/images/logo.png}" width="75px" height="65px" role="img" aria-label="Website logo">
+                        </div>
+                        <div class="col-md-4 d-flex flex-column h-100" role="navigation" aria-label="Footer navigation links">
+                            <div class="h-50 d-flex align-items-center">
+                                <a th:href="@{/about}" class="text-reset link-underline-primary w-100 text-center" role="link" aria-label="About us page">
+                                    <p class="lead my-white-color mb-2">About us</p>
+                                </a>
+                            </div>
+                            <div class="h-50 d-flex align-items-center">
+                                <a th:href="@{/policies}" class="text-reset link-underline-primary w-100 text-center" role="link" aria-label="Policies page">
+                                    <p class="lead my-white-color mb-2">Policies</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex flex-column h-100" aria-label="Footer contact and credit information">
+                            <div class="h-50 d-flex align-items-center">
+                                <p class="lead mb-2 text-center w-100">
+                                    All videogames are from 
+                                    <a class="my-white-color link-underline-primary" href="https://www.freetogame.com/" role="link" aria-label="Visit FreeToGame website">FreeToGame</a>
+                                </p>
+                            </div>
+                            <div class="h-50 d-flex align-items-center">
+                                <span class="lead text-center w-100 mb-2">Contact: <span class="lead my-white-color mb-2" tabindex="0">ciroiencom@hotmail.com</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </footer>
+</html>

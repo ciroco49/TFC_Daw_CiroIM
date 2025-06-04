@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo.png}" />
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/custom.css}">
+    <title>Policies</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <th:block th:replace="~{fragments/header :: header(activeLink='Info')}"></th:block>
+    <main class="mx-auto w-100 flex-grow-1 mt-9" style="max-width: 1500px;">
+        <section class="d-flex flex-column mx-5">
+            <h4>Privacy Policy</h4>
+            <p class="lead">Gaming Heaven respects your privacy. We collect only the information needed to provide you with access to features 
+                like saving favorites, commenting on games, and customizing your profile.</p>
+            <p class="lead"><span class="my-white-color fw-bold">Information we collect when you register:</span></p>
+            <ul>
+                <li class="lead">Nickname</li>
+                <li class="lead">Email address</li>
+                <li class="lead">Password (stored in encrypted form only)</li>
+            </ul>
+            <p class="lead"><span class="my-white-color fw-bold">Optional information you may add later:</span></p>
+            <ul>
+                <li class="lead">Profile description</li>
+                <li class="lead">Profile picture</li>
+                <li class="lead">Favorite games</li>
+            </ul>
+            <p class="lead"><span class="my-white-color fw-bold">Information we store through your activity:</span></p>
+            <ul>
+                <li class="lead">Games you like or mark as favorites</li>
+                <li class="lead">Comments you post on games</li>
+            </ul>
+            <p class="lead">We do not collect or track any technical data (like your device, IP address, or browser), and we do not use third-party analytics or monitoring tools.</p>
+            <p class="lead">When you delete your account, all your data — including your profile, favorites, likes, and comments — is permanently removed from our system.</p>
+        </section>
+        <section class="d-flex flex-column mt-4 mx-5">
+            <h4>Terms of Service</h4>
+            <p class="lead">By using Gaming Heaven, you agree to the following terms:</p>
+            <ul>
+                <li class="lead">You must be at least 13 years old to register an account.</li>
+                <li class="lead">You are responsible for the content you post, including your comments and profile description.</li>
+                <li class="lead">We reserve the right to remove any content or accounts that are offensive, abusive, or harmful to others.</li>
+                <li class="lead">All information and images about the games on our platform are for informational purposes only and may change without notice.</li>
+            </ul>
+            <p class="lead">We may update these terms in the future. Significant changes will be clearly announced on the website.</p>
+        </section>
+        <section class="d-flex flex-column mt-4 mx-5">
+            <h4>Cookie Policy</h4>
+            <p class="lead">Gaming Heaven uses a single cookie to keep you logged in after signing in.</p>
+            <p class="lead"><span class="my-white-color fw-bold">What does this cookie do?</span><br>
+            The session cookie allows us to remember your login status while you browse the site. It contains no personal information and is deleted when you log out or close your browser (depending on your settings).</p>
+            <p class="lead">We do not use cookies for tracking, analytics, or advertising purposes.</p>
+        </section>
+        <section class="d-flex flex-column mt-4 mx-5">
+            <h4>Data Deletion and User Rights</h4>
+            <p class="lead">You have full control over your account. If you choose to delete your account, all your data will be removed automatically and permanently. This includes your profile, comments, likes, and favorite games.</p>
+        </section>
+        <section class="d-flex flex-column mt-4 mx-5">
+            <h4>Disclaimer</h4>
+            <p class="lead">Gaming Heaven does not host or own the games listed on this platform. We provide links and information about games from third-party publishers. We are not responsible for the availability, content, or performance of any external game or website.</p>
+        </section>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>
